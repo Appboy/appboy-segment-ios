@@ -1,0 +1,26 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+use_frameworks!
+
+target 'Segment-Appboy_Example', :exclusive => true do
+  pod "Segment-Appboy", :path => "../"
+  pod 'Analytics'
+end
+
+target 'Segment-Appboy_Tests', :exclusive => true do
+  pod "Segment-Appboy", :path => "../"
+  pod 'Analytics'
+  pod 'Specta'
+  pod 'Expecta'
+  pod 'OCMock'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      if target.name == "Appboy-iOS-SDK"
+        config.build_settings["OTHER_LDFLAGS"] = '$(inherited) "-ObjC"'
+      end
+    end
+  end
+end
