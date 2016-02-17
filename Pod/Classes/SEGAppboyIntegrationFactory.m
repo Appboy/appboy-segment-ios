@@ -1,6 +1,10 @@
 #import "SEGAppboyIntegrationFactory.h"
 #import "SEGAppboyIntegration.h"
 
+@interface SEGAppboyIntegrationFactory ()
+@property NSDictionary *savedPushPayload;
+@end
+
 @implementation SEGAppboyIntegrationFactory
 
 + (id)instance
@@ -29,4 +33,18 @@
   return @"Appboy";
 }
 
+- (void) saveLaunchOptions:(NSDictionary *)launchOptions {
+  NSDictionary *pushPayLoad = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+  if (pushPayLoad != nil && pushPayLoad.count > 0) {
+    self.savedPushPayload = [pushPayLoad copy];
+  }
+}
+
+- (void)saveRemoteNotification:(NSDictionary *)userInfo {
+  self.savedPushPayload = [userInfo copy];
+}
+
+- (NSDictionary *) getPushPayload {
+  return self.savedPushPayload;
+}
 @end

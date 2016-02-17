@@ -1,5 +1,4 @@
 @import UIKit;
-#import "AppboyKit.h"
 
 @interface SEGViewController : UIViewController
 - (IBAction)identifyButtonPress:(id)sender;

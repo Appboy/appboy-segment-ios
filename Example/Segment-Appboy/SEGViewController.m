@@ -1,6 +1,6 @@
 #import "SEGViewController.h"
 #import "SEGAnalytics.h"
-#import "ABKFeedViewControllerPopoverContext.h"
+#import "AppboyKit.h"
 
 @interface SEGViewController ()
 
@@ -45,13 +45,19 @@
 }
 
 - (IBAction)feedbackButtonPress:(id)sender {
-  ABKFeedbackViewControllerModalContext *feedbackViewController = [[ABKFeedbackViewControllerModalContext alloc] init];
-  [self presentViewController:feedbackViewController animated:YES completion:nil];
+  // gate Appboy functionality based on [Appboy sharedInstance].
+  if ([Appboy sharedInstance] != nil) {
+    ABKFeedbackViewControllerModalContext *feedbackViewController = [[ABKFeedbackViewControllerModalContext alloc] init];
+    [self presentViewController:feedbackViewController animated:YES completion:nil];
+  }
 }
 
 - (IBAction)feedButtonPress:(id)sender {
-  ABKFeedViewControllerModalContext *feedModal = [[ABKFeedViewControllerModalContext alloc] init];
-  feedModal.navigationItem.title = @"Modal Context";
-  [self presentViewController:feedModal animated:YES completion:nil];
+  if ([Appboy sharedInstance] != nil) {
+    // gate Appboy functionality based on [Appboy sharedInstance].
+    ABKFeedViewControllerModalContext *feedModal = [[ABKFeedViewControllerModalContext alloc] init];
+    feedModal.navigationItem.title = @"Modal Context";
+    [self presentViewController:feedModal animated:YES completion:nil];
+  }
 }
 @end

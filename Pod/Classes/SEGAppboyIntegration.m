@@ -2,6 +2,19 @@
 #import "Appboy-iOS-SDK/AppboyKit.h"
 #import "Appboy-iOS-SDK/ABKUser.h"
 #import <Analytics/SEGAnalyticsUtils.h>
+#import "SEGAppboyIntegrationFactory.h"
+
+@interface Appboy(Segment)
+- (void) handleRemotePushNotification:(NSDictionary *)notification
+                       withIdentifier:(NSString *)identifier
+                    completionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+                     applicationState:(UIApplicationState)applicationState;
+@end
+
+@interface SEGAppboyIntegrationFactory(Integration)
+- (NSString *)key;
+- (NSDictionary *) getPushPayload;
+@end
 
 @implementation SEGAppboyIntegration
 
@@ -9,16 +22,31 @@
 {
   if (self = [super init]) {
     self.settings = settings;
-    dispatch_async(dispatch_get_main_queue(), ^{
-      NSString *appboyAPIKey = [self.settings objectForKey:@"apiKey"];
+    id appboyAPIKey = self.settings[@"apiKey"];
+    if (![appboyAPIKey isKindOfClass:[NSString class]] || [appboyAPIKey length] == 0) {
+      return nil;
+    }
+    if ([NSThread isMainThread]) {
       [Appboy startWithApiKey:appboyAPIKey
                 inApplication:[UIApplication sharedApplication]
             withLaunchOptions:nil];
       SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:]");
-    });
+    } else {
+      dispatch_sync(dispatch_get_main_queue(), ^{
+        [Appboy startWithApiKey:appboyAPIKey
+                  inApplication:[UIApplication sharedApplication]
+              withLaunchOptions:nil];
+        SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:]");
+      });
+    }
   }
   
-  return self;
+  if ([Appboy sharedInstance] != nil) {
+    return self;
+  } else {
+    return nil;
+  }
+  
 }
 
 - (void)identify:(SEGIdentifyPayload *)payload
@@ -169,5 +197,42 @@
 {
   [[Appboy sharedInstance] registerPushToken:[NSString stringWithFormat:@"%@", deviceToken]];
   SEGLog(@"[[Appboy sharedInstance] registerPushToken:]");
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {
+  if (![[UIApplication sharedApplication].delegate respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)]) {
+    [self logPushIfComesInBeforeAppboyInitializedWithIdentifier:nil];
+  }
+}
+
+- (void)receivedRemoteNotification:(NSDictionary *)userInfo {
+  if (![self logPushIfComesInBeforeAppboyInitializedWithIdentifier:nil]) {
+    [[Appboy sharedInstance] registerApplication:[UIApplication sharedApplication] didReceiveRemoteNotification:userInfo];
+  }
+  SEGLog(@"[[Appboy sharedInstance] registerApplication: didReceiveRemoteNotification:]");
+}
+
+- (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo {
+  if (![self logPushIfComesInBeforeAppboyInitializedWithIdentifier:identifier]) {
+    [[Appboy sharedInstance] getActionWithIdentifier:identifier forRemoteNotification:userInfo completionHandler:nil];
+  }
+  SEGLog(@"[[Appboy sharedInstance] getActionWithIdentifier: forRemoteNotification: completionHandler:]");
+}
+
+- (BOOL) logPushIfComesInBeforeAppboyInitializedWithIdentifier:(NSString *)identifier {
+  NSDictionary *pushDictionary = [[SEGAppboyIntegrationFactory instance] getPushPayload];
+  if (pushDictionary != nil && pushDictionary.count > 0) {
+    // The existence of a push payload saved on the factory indicates that the push was received when
+    // Appboy was not initialized yet, and thus the push was received in the inactive state.
+    if ([[Appboy sharedInstance] respondsToSelector:@selector(handleRemotePushNotification:withIdentifier:completionHandler:applicationState:)]) {
+      [[Appboy sharedInstance] handleRemotePushNotification:pushDictionary
+                                             withIdentifier:identifier
+                                          completionHandler:nil
+                                           applicationState:UIApplicationStateInactive];
+    }
+    [[SEGAppboyIntegrationFactory instance] saveRemoteNotification:nil];
+    return YES;
+  }
+  return NO;
 }
 @end

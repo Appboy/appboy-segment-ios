@@ -5,4 +5,6 @@
 
 + (id)instance;
 
+- (void)saveLaunchOptions:(NSDictionary *)launchOptions;
+- (void)saveRemoteNotification:(NSDictionary *)userInfo;
 @end

@@ -9,9 +9,11 @@
 {
   SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"xNAmGpyITen4FEZg9C2ES6r2iYm8Ommk"];
   [config use:[SEGAppboyIntegrationFactory instance]];
+  [[SEGAppboyIntegrationFactory instance] saveLaunchOptions:launchOptions];
   [SEGAnalytics setupWithConfiguration:config];
   [SEGAnalytics debug:YES];
   
+  [self setupPushCategories];
   return YES;
 }
 
@@ -34,11 +36,64 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+  application.applicationIconBadgeNumber = 0;
   // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+  [[SEGAnalytics sharedAnalytics] receivedRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+  if ([Appboy sharedInstance] == nil) {
+    [[SEGAppboyIntegrationFactory instance] saveRemoteNotification:userInfo];
+  }
+  [[SEGAnalytics sharedAnalytics] receivedRemoteNotification:userInfo];
+  completionHandler(UIBackgroundFetchResultNoData);
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+  [[SEGAnalytics sharedAnalytics] registeredForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler
+{
+  if ([Appboy sharedInstance] == nil) {
+    [[SEGAppboyIntegrationFactory instance] saveRemoteNotification:userInfo];
+  }
+  [[SEGAnalytics sharedAnalytics] handleActionWithIdentifier:identifier forRemoteNotification:userInfo];
+  completionHandler();
+}
+
+- (void)setupPushCategories {
+  UIMutableUserNotificationAction *likeAction = [[UIMutableUserNotificationAction alloc] init];
+  likeAction.identifier = @"FOREGROUND_IDENTIFIER";
+  likeAction.title = @"Foreground";
+  likeAction.activationMode = UIUserNotificationActivationModeForeground;
+  likeAction.destructive = NO;
+  likeAction.authenticationRequired = NO;
+  
+  UIMutableUserNotificationAction *unlikeAction = [[UIMutableUserNotificationAction alloc] init];
+  unlikeAction.identifier = @"BACKGROUND_IDENTIFIER";
+  unlikeAction.title = @"Background";
+  unlikeAction.activationMode = UIUserNotificationActivationModeBackground;
+  unlikeAction.destructive = NO;
+  unlikeAction.authenticationRequired = NO;
+  
+  UIMutableUserNotificationCategory *likeCategory = [[UIMutableUserNotificationCategory alloc] init];
+  likeCategory.identifier = @"SEGMENT_CATEGORY";
+  [likeCategory setActions:@[likeAction, unlikeAction] forContext:UIUserNotificationActionContextDefault];
+  
+  NSSet *categories = [NSSet setWithObjects:likeCategory, nil];
+  UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge|UIUserNotificationTypeAlert | UIUserNotificationTypeSound) categories:categories];
+  [[UIApplication sharedApplication] registerForRemoteNotifications];
+  [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
 }
 @end
