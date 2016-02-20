@@ -5,15 +5,13 @@
 
 Appboy integration for analytics-ios.
 
-NOTE: For this alpha version, the Appboy segment iOS SDK doesn't support push analytics, and it won't open deep links or http links from push. Version 1.0.0 should have improved push support.
-
 ## Installation
 
 Analytics is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your `Podfile`:
 
 ```ruby
-pod "Segment-Appboy", '1.0.0-alpha'
+pod "Segment-Appboy", '1.0.0'
 ```
 
 ## License
