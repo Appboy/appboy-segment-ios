@@ -59,7 +59,10 @@
       [[Appboy sharedInstance] changeUser:payload.userId];
       SEGLog(@"[[Appboy sharedInstance] changeUser:%@]", payload.userId);
     } else {
-      dispatch_sync(dispatch_get_main_queue(), ^{
+      // Note: this must be async because segmentio synchronizes in forwardSelector - if identify is called from a different thread
+      // and then forwardSelector is called, we can get into deadlock where the forwardSelector on the main thread is waiting
+      // for the SEGAnalytics class lock and a separate call has it and is waiting here for the main thread.
+      dispatch_async(dispatch_get_main_queue(), ^{
         [[Appboy sharedInstance] changeUser:payload.userId];
         SEGLog(@"[[Appboy sharedInstance] changeUser:%@]", payload.userId);
       });
