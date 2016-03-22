@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-Appboy"
-  s.version          = "1.0.1"
+  s.version          = "1.0.2"
   s.summary          = "Appboy Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC

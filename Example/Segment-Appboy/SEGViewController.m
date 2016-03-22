@@ -19,11 +19,18 @@
 }
 
 - (IBAction)identifyButtonPress:(id)sender {
+  NSInteger integerAttribute = 200;
+  float floatAttribute = 12.3f;
+  int intAttribute = 18;
+  short shortAttribute = (short)2;
   [[SEGAnalytics sharedAnalytics] identify:@"appboySegementTestUseriOS"
                                     traits:@{ @"email": @"hello@appboy.com",
                                               @"bool" : @(YES),
                                               @"double" : @(3.14159),
-                                              @"integer": @(31),
+                                              @"intAttribute": @(intAttribute),
+                                              @"integerAttribute" : @(integerAttribute),
+                                              @"floatAttribute" : @(floatAttribute),
+                                              @"shortAttribute" : @(shortAttribute),
                                               @"gender" : @"female",
                                               @"birthday" : [NSDate dateWithTimeIntervalSince1970:564559200],
                                               @"firstName" : @"Appboy",

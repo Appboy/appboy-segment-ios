@@ -136,10 +136,13 @@
         if (strcmp([traitValue objCType], [@(YES) objCType]) == 0) {
           [[Appboy sharedInstance].user setCustomAttributeWithKey:key andBOOLValue:[(NSNumber *)traitValue boolValue]];
           SEGLog(@"[[Appboy sharedInstance].user setCustomAttributeWithKey: andBOOLValue:]");
-        } else if (strcmp([traitValue objCType], @encode(int)) == 0) {
+        } else if (strcmp([traitValue objCType], @encode(short)) == 0 ||
+                   strcmp([traitValue objCType], @encode(int)) == 0 ||
+                   strcmp([traitValue objCType], @encode(long)) == 0) {
           [[Appboy sharedInstance].user setCustomAttributeWithKey:key andIntegerValue:[(NSNumber *)traitValue integerValue]];
           SEGLog(@"[[Appboy sharedInstance].user setCustomAttributeWithKey: andIntegerValue:]");
-        } else if (strcmp([traitValue objCType], @encode(double)) == 0) {
+        } else if (strcmp([traitValue objCType], @encode(float)) == 0 ||
+                   strcmp([traitValue objCType], @encode(double)) == 0) {
           [[Appboy sharedInstance].user setCustomAttributeWithKey:key andDoubleValue:[(NSNumber *)traitValue doubleValue]];
           SEGLog(@"[[Appboy sharedInstance].user setCustomAttributeWithKey: andDoubleValue:]");
         } else {

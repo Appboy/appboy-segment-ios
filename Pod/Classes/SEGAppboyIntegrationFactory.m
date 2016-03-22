@@ -7,7 +7,7 @@
 
 @implementation SEGAppboyIntegrationFactory
 
-+ (id)instance
++ (instancetype)instance
 {
   static dispatch_once_t once;
   static SEGAppboyIntegrationFactory *sharedInstance;

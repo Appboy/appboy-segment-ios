@@ -3,7 +3,7 @@
 
 @interface SEGAppboyIntegrationFactory : NSObject<SEGIntegrationFactory>
 
-+ (id)instance;
++ (instancetype)instance;
 
 - (void)saveLaunchOptions:(NSDictionary *)launchOptions;
 - (void)saveRemoteNotification:(NSDictionary *)userInfo;

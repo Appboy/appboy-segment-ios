@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.0.2 *(March, 2016)*
+-------------------------------------------
+*(Supports analytics-ios 3.0.+ and Appboy 2.19.1+)*
+
+- Adds support for custom attribute values with short, long, and float types.
+- Modifies `SEGAppboyIntegrationFactory`'s `instance` method to return an `instancetype` for simpler Swift integration.
+
 Version 1.0.1 *(March, 2016)*
 -------------------------------------------
 *(Supports analytics-ios 3.0.+ and Appboy 2.18.2+)*
