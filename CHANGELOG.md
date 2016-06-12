@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.0.3 *(June, 2016)*
+-------------------------------------------
+*(Supports analytics-ios 3.+ and Appboy 2.20.1+)*
+
+- Updates the Podspec to use analytics-ios with the latest 3.x version.
+
 Version 1.0.2 *(March, 2016)*
 -------------------------------------------
 *(Supports analytics-ios 3.0.+ and Appboy 2.19.1+)*

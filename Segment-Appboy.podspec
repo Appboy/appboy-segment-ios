@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-Appboy"
-  s.version          = "1.0.2"
+  s.version          = "1.0.3"
   s.summary          = "Appboy Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'Pod/Classes/**/*'
 
-  s.dependency 'Analytics', '~> 3.0.0'
+  s.dependency 'Analytics', '~> 3.0'
   s.dependency 'Appboy-iOS-SDK'
 
 end

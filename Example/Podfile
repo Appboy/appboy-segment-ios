@@ -2,12 +2,12 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
 
-target 'Segment-Appboy_Example', :exclusive => true do
+target 'Segment-Appboy_Example' do
   pod "Segment-Appboy", :path => "../"
   pod 'Analytics'
 end
 
-target 'Segment-Appboy_Tests', :exclusive => true do
+target 'Segment-Appboy_Tests' do
   pod "Segment-Appboy", :path => "../"
   pod 'Analytics'
   pod 'Specta'
