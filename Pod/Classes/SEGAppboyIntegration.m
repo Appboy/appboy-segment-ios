@@ -1,6 +1,11 @@
 #import "SEGAppboyIntegration.h"
+#if defined(__has_include) && __has_include(<Appboy_iOS_SDK/AppboyKit.h>)
 #import <Appboy_iOS_SDK/AppboyKit.h>
 #import <Appboy_iOS_SDK/ABKUser.h>
+#else
+#import "Appboy-iOS-SDK/AppboyKit.h"
+#import "Appboy-iOS-SDK/ABKUser.h"
+#endif
 #import <Analytics/SEGAnalyticsUtils.h>
 #import "SEGAppboyIntegrationFactory.h"
 
