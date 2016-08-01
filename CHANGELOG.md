@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.0.4 *(August, 2016)*
+-------------------------------------------
+*(Supports analytics-ios 3.+ and Appboy 2.21.0+)*
+
+- Updates the wrapper SDK to work with the Cocoapod 1.0.x.
+
 Version 1.0.3 *(June, 2016)*
 -------------------------------------------
 *(Supports analytics-ios 3.+ and Appboy 2.20.1+)*
