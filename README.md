@@ -20,7 +20,7 @@ After adding the dependency, you must register the integration with our SDK. To 
 
 
 ```
-#import <Segment-Appboy/AppboyIntegrationFactory.h>
+#import "SEGAppboyIntegrationFactory.h"
 ```
 
 And add the following lines:
@@ -33,6 +33,8 @@ SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWith
 
 [SEGAnalytics setupWithConfiguration:config];
 ```
+
+Please see [our documentation](https://segment.com/docs/integrations/appboy/#ios) for more information.
 
 ## License
 
