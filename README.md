@@ -14,6 +14,28 @@ it, simply add the following line to your `Podfile`:
 pod "Segment-Appboy"
 ```
 
+## Usage
+
+After adding the dependency, you must register the integration with our SDK. To do this, import the Appboy integration in your AppDelegate:
+
+
+```
+#import "SEGAppboyIntegrationFactory.h"
+```
+
+And add the following lines:
+
+```
+NSString *const SEGMENT_WRITE_KEY = @" ... ";
+SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:SEGMENT_WRITE_KEY];
+
+[config use:[SEGAppboyIntegrationFactory instance]];
+
+[SEGAnalytics setupWithConfiguration:config];
+```
+
+Please see [our documentation](https://segment.com/docs/integrations/appboy/#ios) for more information.
+
 ## License
 
 ```
