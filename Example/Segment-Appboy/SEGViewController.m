@@ -23,7 +23,13 @@
   float floatAttribute = 12.3f;
   int intAttribute = 18;
   short shortAttribute = (short)2;
-  [[SEGAnalytics sharedAnalytics] identify:@"appboySegementTestUseriOS"
+  NSDate *dateAttribute = [NSDate date];
+  
+  NSString *userID = @"appboySegmentTestUseriOS";
+  if (self.userIDTextField.text.length > 0) {
+    userID = self.userIDTextField.text;
+  }
+  [[SEGAnalytics sharedAnalytics] identify:userID
                                     traits:@{ @"email": @"hello@appboy.com",
                                               @"bool" : @(YES),
                                               @"double" : @(3.14159),
@@ -31,6 +37,7 @@
                                               @"integerAttribute" : @(integerAttribute),
                                               @"floatAttribute" : @(floatAttribute),
                                               @"shortAttribute" : @(shortAttribute),
+                                              @"dateAttribute": dateAttribute,
                                               @"gender" : @"female",
                                               @"birthday" : [NSDate dateWithTimeIntervalSince1970:564559200],
                                               @"firstName" : @"Appboy",
@@ -45,8 +52,21 @@
 }
 
 - (IBAction)trackButtonPress:(id)sender {
-  [[SEGAnalytics sharedAnalytics] track:@"appboySegmentTrackEvent"
-                             properties:@{ @"eventproperty": @"eventPropertyValue"}];
+  NSString *customEvent = @"appboySegmentTrackEvent";
+  if (self.customEventTextField.text.length > 0) {
+    customEvent = self.customEventTextField.text;
+  }
+  NSString *propertyKey = @"eventPropertyKey";
+  if (self.propertyKeyTextField.text.length > 0) {
+    propertyKey = self.propertyKeyTextField.text;
+  }
+  NSString *propertyValue = @"eventPropertyValue";
+  if (self.propertyValueTextField.text.length > 0) {
+    propertyValue = self.propertyValueTextField.text;
+  }
+  
+  [[SEGAnalytics sharedAnalytics] track:customEvent
+                             properties:@{ propertyKey: propertyValue}];
   [[SEGAnalytics sharedAnalytics] track:@"Candy"
                              properties:@{ @"currency": @"CNY", @"revenue" : @"60", @"property" : @"milky white rabbit"}];
 }

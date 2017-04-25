@@ -42,9 +42,13 @@ describe(@"SEGAppboyIntegration", ^{
       
       SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
       
+      NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+      formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
+      NSString *birthdate = [formatter stringFromDate:testDate];
+      
       NSDictionary *traits = @{
                                @"address" : @{ @"city" : @"belmar", @"country" : @"usa" },
-                               @"birthday" : iso8601FormattedString(testDate),
+                               @"birthday" : birthdate,
                                @"email" : @"brian@appboy.com",
                                @"firstName" : @"brian",
                                @"lastName" : @"w",
@@ -53,6 +57,7 @@ describe(@"SEGAppboyIntegration", ^{
                                };
       
       SEGIdentifyPayload *identifyPayload = [[SEGIdentifyPayload alloc] initWithUserId:@"testUser"
+                                                                           anonymousId:nil
                                                                                 traits:traits
                                                                                context:nil
                                                                           integrations:nil];
@@ -83,6 +88,7 @@ describe(@"SEGAppboyIntegration", ^{
                                };
       
       SEGIdentifyPayload *identifyPayload = [[SEGIdentifyPayload alloc] initWithUserId:@"testUser"
+                                                                           anonymousId:nil
                                                                                 traits:traits
                                                                                context:nil
                                                                           integrations:nil];

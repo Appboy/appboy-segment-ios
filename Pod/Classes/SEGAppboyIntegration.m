@@ -34,14 +34,16 @@
     if ([NSThread isMainThread]) {
       [Appboy startWithApiKey:appboyAPIKey
                 inApplication:[UIApplication sharedApplication]
-            withLaunchOptions:nil];
-      SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:]");
+            withLaunchOptions:nil
+            withAppboyOptions:@{ ABKSDKFlavorKey : @(SEGMENT) }];
+      SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]");
     } else {
       dispatch_sync(dispatch_get_main_queue(), ^{
         [Appboy startWithApiKey:appboyAPIKey
                   inApplication:[UIApplication sharedApplication]
-              withLaunchOptions:nil];
-        SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:]");
+              withLaunchOptions:nil
+              withAppboyOptions:@{ ABKSDKFlavorKey : @(SEGMENT) }];
+        SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]");
       });
     }
   }
@@ -135,8 +137,11 @@
     if (![appboyTraits containsObject:key]) {
       id traitValue = payload.traits[key];
       if ([traitValue isKindOfClass:[NSString class]]) {
-      [[Appboy sharedInstance].user setCustomAttributeWithKey:key andStringValue:traitValue];
+        [[Appboy sharedInstance].user setCustomAttributeWithKey:key andStringValue:traitValue];
         SEGLog(@"[[Appboy sharedInstance].user setCustomAttributeWithKey: andStringValue:]");
+      } else if ([traitValue isKindOfClass:[NSDate class]]) {
+        [[Appboy sharedInstance].user setCustomAttributeWithKey:key andDateValue:traitValue];
+        SEGLog(@"[[Appboy sharedInstance].user setCustomAttributeWithKey: andDateValue:]");
       } else if ([traitValue isKindOfClass:[NSNumber class]]) {
         if (strcmp([traitValue objCType], [@(YES) objCType]) == 0) {
           [[Appboy sharedInstance].user setCustomAttributeWithKey:key andBOOLValue:[(NSNumber *)traitValue boolValue]];

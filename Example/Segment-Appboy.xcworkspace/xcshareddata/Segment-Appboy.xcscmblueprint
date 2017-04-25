@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8DF2DC8AEC44CC6A8F4E59E3EBC7062C20086289",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8DF2DC8AEC44CC6A8F4E59E3EBC7062C20086289" : 9223372036854775807,
+    "D1B6A51F97352AE847DC01D579528D485A6D3FEF" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6A70A934-5BD2-4B52-BBB9-4659E49ECE2E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8DF2DC8AEC44CC6A8F4E59E3EBC7062C20086289" : "segment-ios\/",
+    "D1B6A51F97352AE847DC01D579528D485A6D3FEF" : "AppboyKit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Segment-Appboy",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "appboy-segment-integration\/Example\/Segment-Appboy.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Appboy\/segment-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8DF2DC8AEC44CC6A8F4E59E3EBC7062C20086289"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Appboy\/AppboyKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D1B6A51F97352AE847DC01D579528D485A6D3FEF"
+    }
+  ]
+}
