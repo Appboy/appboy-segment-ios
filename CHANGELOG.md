@@ -1,3 +1,6 @@
+## 1.0.6
+* Updates the wrapper SDK to work with Xcode 9 beta 2.
+
 ## 1.0.5
 * Supports analytics-ios 3.+ and Appboy 2.29.0+
 * Adds support for custom attribute values with date types.

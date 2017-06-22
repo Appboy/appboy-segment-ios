@@ -216,14 +216,18 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-  if (![[UIApplication sharedApplication].delegate respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)]) {
-    [self logPushIfComesInBeforeAppboyInitializedWithIdentifier:nil];
-  }
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (![[UIApplication sharedApplication].delegate respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)]) {
+      [self logPushIfComesInBeforeAppboyInitializedWithIdentifier:nil];
+    }
+  });
 }
 
 - (void)receivedRemoteNotification:(NSDictionary *)userInfo {
   if (![self logPushIfComesInBeforeAppboyInitializedWithIdentifier:nil]) {
-    [[Appboy sharedInstance] registerApplication:[UIApplication sharedApplication] didReceiveRemoteNotification:userInfo];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [[Appboy sharedInstance] registerApplication:[UIApplication sharedApplication] didReceiveRemoteNotification:userInfo];
+    });
   }
   SEGLog(@"[[Appboy sharedInstance] registerApplication: didReceiveRemoteNotification:]");
 }
