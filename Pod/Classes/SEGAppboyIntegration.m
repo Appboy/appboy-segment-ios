@@ -2,9 +2,11 @@
 #if defined(__has_include) && __has_include(<Appboy_iOS_SDK/AppboyKit.h>)
 #import <Appboy_iOS_SDK/AppboyKit.h>
 #import <Appboy_iOS_SDK/ABKUser.h>
+#import <Appboy_iOS_SDK/ABKAttributionData.h>
 #else
 #import "Appboy-iOS-SDK/AppboyKit.h"
 #import "Appboy-iOS-SDK/ABKUser.h"
+#import "Appboy-iOS-SDK/ABKAttributionData.h"
 #endif
 #import <Analytics/SEGAnalyticsUtils.h>
 #import "SEGAppboyIntegrationFactory.h"
@@ -165,6 +167,19 @@
 
 - (void)track:(SEGTrackPayload *)payload
 {
+  if ([payload.event isEqualToString:@"Install Attributed"]) {
+    if ([payload.properties[@"campaign"] isKindOfClass:[NSDictionary class]]) {
+      NSDictionary *attributionDataDictionary = (NSDictionary *)payload.properties[@"campaign"];
+      ABKAttributionData *attributionData = [[ABKAttributionData alloc]
+                                             initWithNetwork:attributionDataDictionary[@"source"]
+                                                    campaign:attributionDataDictionary[@"name"]
+                                                     adGroup:attributionDataDictionary[@"ad_group"]
+                                                    creative:attributionDataDictionary[@"ad_creative"]];
+      [[Appboy sharedInstance].user setAttributionData:attributionData];
+      return;
+    }
+  }
+  
   NSDecimalNumber *revenue = [SEGAppboyIntegration extractRevenue:payload.properties withKey:@"revenue"];
   if (revenue) {
     NSString *currency = @"USD";  // Make USD as the default currency.

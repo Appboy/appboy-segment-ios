@@ -1,3 +1,7 @@
+## 1.0.7
+* Supports analytics-ios 3.+ and Appboy 2.30.0+
+* Fixes an issue where install attribution data was being sent up as an event.
+
 ## 1.0.6
 * Updates the wrapper SDK to work with Xcode 9 beta 2.
 

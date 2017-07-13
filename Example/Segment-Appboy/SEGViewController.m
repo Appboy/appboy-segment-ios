@@ -69,6 +69,13 @@
                              properties:@{ propertyKey: propertyValue}];
   [[SEGAnalytics sharedAnalytics] track:@"Candy"
                              properties:@{ @"currency": @"CNY", @"revenue" : @"60", @"property" : @"milky white rabbit"}];
+  [[SEGAnalytics sharedAnalytics] track:@"Install Attributed"
+                             properties: @{@"provider" : @"Tune/Kochava/Branch",
+                                           @"campaign" : @{@"source" : @"Network/FB/AdWords/MoPub/Source",
+                                                             @"name" : @"Campaign Name",
+                                                          @"content" : @"Organic Content Title",
+                                                      @"ad_creative" : @"Red Hello World Ad",
+                                                         @"ad_group" : @"Red Ones"}}];
 }
 
 - (IBAction)feedbackButtonPress:(id)sender {
