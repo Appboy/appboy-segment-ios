@@ -10,6 +10,7 @@
 #endif
 #import <Analytics/SEGAnalyticsUtils.h>
 #import "SEGAppboyIntegrationFactory.h"
+#import "SEGAppboyIntegrationEndpointDelegate.h"
 
 @interface Appboy(Segment)
 - (void) handleRemotePushNotification:(NSDictionary *)notification
@@ -33,18 +34,27 @@
     if (![appboyAPIKey isKindOfClass:[NSString class]] || [appboyAPIKey length] == 0) {
       return nil;
     }
+    
+    NSMutableDictionary *appboyOptions = [@{ABKSDKFlavorKey : @(SEGMENT)} mutableCopy];
+    NSString *customEndpoint = self.settings[@"customEndpoint"];
+    if (customEndpoint && [customEndpoint length] != 0) {
+      SEGAppboyIntegrationEndpointDelegate *endpointDelegate =
+        [[SEGAppboyIntegrationEndpointDelegate alloc] initWithCustomEndpoint:customEndpoint];
+      appboyOptions[ABKAppboyEndpointDelegateKey] = endpointDelegate;
+    }
+    
     if ([NSThread isMainThread]) {
       [Appboy startWithApiKey:appboyAPIKey
                 inApplication:[UIApplication sharedApplication]
             withLaunchOptions:nil
-            withAppboyOptions:@{ ABKSDKFlavorKey : @(SEGMENT) }];
+            withAppboyOptions:appboyOptions];
       SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]");
     } else {
       dispatch_sync(dispatch_get_main_queue(), ^{
         [Appboy startWithApiKey:appboyAPIKey
                   inApplication:[UIApplication sharedApplication]
               withLaunchOptions:nil
-              withAppboyOptions:@{ ABKSDKFlavorKey : @(SEGMENT) }];
+              withAppboyOptions:appboyOptions];
         SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]");
       });
     }
@@ -160,6 +170,9 @@
         } else {
           SEGLog(@"Could not map NSNumber value to Appboy custom attribute:%@]", traitValue);
         }
+      } else if ([traitValue isKindOfClass:[NSArray class]]) {
+        [[Appboy sharedInstance].user setCustomAttributeArrayWithKey:key array:traitValue];
+        SEGLog(@"[[Appboy sharedInstance].user setCustomAttributeArrayWithKey: array:]");
       }
     }
   }
@@ -211,6 +224,8 @@
       return [NSDecimalNumber decimalNumberWithString:revenueProperty];
     } else if ([revenueProperty isKindOfClass:[NSDecimalNumber class]]) {
       return revenueProperty;
+    } else if ([revenueProperty isKindOfClass:[NSNumber class]]) {
+      return [NSDecimalNumber decimalNumberWithDecimal:[revenueProperty decimalValue]];
     }
   }
   return nil;

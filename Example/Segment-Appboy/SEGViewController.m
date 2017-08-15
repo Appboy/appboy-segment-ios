@@ -1,6 +1,7 @@
 #import "SEGViewController.h"
 #import "SEGAnalytics.h"
 #import "AppboyKit.h"
+#import "ABKModalFeedbackViewController.h"
 
 @interface SEGViewController ()
 
@@ -37,7 +38,8 @@
                                               @"integerAttribute" : @(integerAttribute),
                                               @"floatAttribute" : @(floatAttribute),
                                               @"shortAttribute" : @(shortAttribute),
-                                              @"dateAttribute": dateAttribute,
+                                              @"dateAttribute" : dateAttribute,
+                                              @"arrayAttribute" : @[@"one", @"two", @"three"],
                                               @"gender" : @"female",
                                               @"birthday" : [NSDate dateWithTimeIntervalSince1970:564559200],
                                               @"firstName" : @"Appboy",
@@ -67,8 +69,12 @@
   
   [[SEGAnalytics sharedAnalytics] track:customEvent
                              properties:@{ propertyKey: propertyValue}];
+  NSNumber *numberRevenue = @(45);
+  NSString *stringRevenue = @"60";
   [[SEGAnalytics sharedAnalytics] track:@"Candy"
-                             properties:@{ @"currency": @"CNY", @"revenue" : @"60", @"property" : @"milky white rabbit"}];
+                             properties:@{ @"currency": @"CNY", @"revenue" : numberRevenue, @"property" : @"milky white rabbit"}];
+  [[SEGAnalytics sharedAnalytics] track:@"Purchase"
+                             properties:@{ @"currency": @"CNY", @"revenue" : stringRevenue, @"property" : @"myProperty"}];
   [[SEGAnalytics sharedAnalytics] track:@"Install Attributed"
                              properties: @{@"provider" : @"Tune/Kochava/Branch",
                                            @"campaign" : @{@"source" : @"Network/FB/AdWords/MoPub/Source",
@@ -81,7 +87,7 @@
 - (IBAction)feedbackButtonPress:(id)sender {
   // gate Appboy functionality based on [Appboy sharedInstance].
   if ([Appboy sharedInstance] != nil) {
-    ABKFeedbackViewControllerModalContext *feedbackViewController = [[ABKFeedbackViewControllerModalContext alloc] init];
+    ABKModalFeedbackViewController *feedbackViewController = [[ABKModalFeedbackViewController alloc] init];
     [self presentViewController:feedbackViewController animated:YES completion:nil];
   }
 }

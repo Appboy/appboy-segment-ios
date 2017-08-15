@@ -1,3 +1,9 @@
+## 2.0.0
+* Supports analytics-ios 3.+ and Appboy 3.0.0+
+* Adds support for custom attribute values with array types.
+* Adds support for purchase revenue with NSNumber type.
+* Adds support for custom endpoints which can be set on the Segment dashboard.
+
 ## 1.0.7
 * Supports analytics-ios 3.+ and Appboy 2.30.0+
 * Fixes an issue where install attribution data was being sent up as an event.
