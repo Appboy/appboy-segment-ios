@@ -1,5 +1,9 @@
 #import "Foundation/Foundation.h"
-#import "ABKAppboyEndpointDelegate.h"
+#if defined(__has_include) && __has_include(<Appboy_iOS_SDK/AppboyKit.h>)
+#import <Appboy_iOS_SDK/ABKAppboyEndpointDelegate.h>
+#else
+#import "Appboy-iOS-SDK/ABKAppboyEndpointDelegate.h"
+#endif
 
 @interface SEGAppboyIntegrationEndpointDelegate : NSObject <ABKAppboyEndpointDelegate>
 

@@ -1,3 +1,7 @@
+## 2.0.1
+* Supports analytics-ios 3.+ and Appboy 3.1.0+
+* Fixes an issue for those using `use_frameworks!` in their Podfile
+
 ## 2.0.0
 * Supports analytics-ios 3.+ and Appboy 3.0.0+
 * Adds support for custom attribute values with array types.
