@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/Segment-Appboy.svg?style=flat)](http://cocoapods.org/pods/Segment-Appboy)
 [![License](https://img.shields.io/cocoapods/l/Segment-Appboy.svg?style=flat)](http://cocoapods.org/pods/Segment-Appboy)
 
-Appboy integration for analytics-ios.
+Braze integration for analytics-ios.
 
 ## Installation
 
@@ -16,7 +16,7 @@ pod "Segment-Appboy"
 
 ## Usage
 
-After adding the dependency, you must register the integration with our SDK. To do this, import the Appboy integration in your AppDelegate:
+After adding the dependency, you must register the integration with our SDK. To do this, import the Braze integration in your AppDelegate:
 
 
 ```
