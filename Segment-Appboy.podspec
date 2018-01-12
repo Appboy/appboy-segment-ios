@@ -20,8 +20,15 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-
   s.dependency 'Analytics', '~> 3.0'
-  s.dependency 'Appboy-iOS-SDK'
 
+  s.default_subspec = 'Full-SDK'
+
+  s.subspec 'Full-SDK' do |default|
+    default.dependency 'Appboy-iOS-SDK/'
+  end
+
+  s.subspec 'Core' do |core|
+    core.dependency 'Appboy-iOS-SDK/Core'
+  end
 end
