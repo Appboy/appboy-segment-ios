@@ -3,8 +3,6 @@
 Braze iOS Segment SDK
 ==========
 
-# Analytics
-
 [![Version](https://img.shields.io/cocoapods/v/Segment-Appboy.svg?style=flat)](http://cocoapods.org/pods/Segment-Appboy)
 [![License](https://img.shields.io/cocoapods/l/Segment-Appboy.svg?style=flat)](http://cocoapods.org/pods/Segment-Appboy)
 
