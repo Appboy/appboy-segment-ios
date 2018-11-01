@@ -2,6 +2,7 @@
 #import "SEGAnalytics.h"
 #import "AppboyKit.h"
 #import "ABKModalFeedbackViewController.h"
+#import "ABKNewsFeedViewController.h"
 
 @interface SEGViewController ()
 
@@ -95,9 +96,8 @@
 - (IBAction)feedButtonPress:(id)sender {
   if ([Appboy sharedInstance] != nil) {
     // gate Appboy functionality based on [Appboy sharedInstance].
-    ABKFeedViewControllerModalContext *feedModal = [[ABKFeedViewControllerModalContext alloc] init];
-    feedModal.navigationItem.title = @"Modal Context";
-    [self presentViewController:feedModal animated:YES completion:nil];
+    ABKNewsFeedViewController *newsFeed = [[ABKNewsFeedViewController alloc] init];
+    [self.navigationController presentViewController:newsFeed animated:YES completion:nil];
   }
 }
 @end

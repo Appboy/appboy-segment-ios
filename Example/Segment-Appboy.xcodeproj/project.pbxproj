@@ -206,7 +206,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				D3665A2A329991C788AD855F /* [CP] Embed Pods Frameworks */,
-				B7D8B7B344BC559F45D51EE6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -226,7 +225,6 @@
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
 				8C97F5D383595BA7C234BB82 /* [CP] Embed Pods Frameworks */,
-				B7FF83C7C1E793F4BF195D61 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -354,36 +352,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Segment-Appboy_Tests/Pods-Segment-Appboy_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B7D8B7B344BC559F45D51EE6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Segment-Appboy_Example/Pods-Segment-Appboy_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B7FF83C7C1E793F4BF195D61 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Segment-Appboy_Tests/Pods-Segment-Appboy_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D3665A2A329991C788AD855F /* [CP] Embed Pods Frameworks */ = {
