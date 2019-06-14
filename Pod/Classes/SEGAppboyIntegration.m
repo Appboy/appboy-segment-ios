@@ -11,6 +11,7 @@
 #import <Analytics/SEGAnalyticsUtils.h>
 #import "SEGAppboyIntegrationFactory.h"
 #import "SEGAppboyIntegrationEndpointDelegate.h"
+#import "SEGAppboyIntegrationOptions.h"
 
 @interface Appboy(Segment)
 - (void) handleRemotePushNotification:(NSDictionary *)notification
@@ -24,12 +25,19 @@
 - (NSDictionary *) getPushPayload;
 @end
 
+@interface SEGAppboyIntegration()
+
+@property (nonatomic, nullable, strong) SEGAppboyIntegrationOptions *integrationOptions;
+
+@end
+
 @implementation SEGAppboyIntegration
 
-- (id)initWithSettings:(NSDictionary *)settings
+- (id)initWithSettings:(NSDictionary *)settings integrationOptions:(SEGAppboyIntegrationOptions *)options
 {
   if (self = [super init]) {
     self.settings = settings;
+    self.integrationOptions = options;
     id appboyAPIKey = self.settings[@"apiKey"];
     if (![appboyAPIKey isKindOfClass:[NSString class]] || [appboyAPIKey length] == 0) {
       return nil;
@@ -70,6 +78,10 @@
 
 - (void)identify:(SEGIdentifyPayload *)payload
 {
+  if (self.integrationOptions.disableIdentifyEvents) {
+    return;
+  }
+
   if (![NSThread isMainThread]) {
     dispatch_async(dispatch_get_main_queue(), ^{
       [self identify:payload];
