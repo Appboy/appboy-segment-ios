@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E1CB38A67EF2A5AD3E448E7 /* Pods_Segment_Appboy_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 589BD37A4C260FD9A3C992C7 /* Pods_Segment_Appboy_Example.framework */; };
+		47A5C34A22B452CD000D95A2 /* SEGAppboyAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A5C34922B452CD000D95A2 /* SEGAppboyAdditions.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -40,6 +41,7 @@
 		201291CD83F54EB0C208C304 /* Pods-Segment-Appboy_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-Appboy_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Segment-Appboy_Example/Pods-Segment-Appboy_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		27DBD57E45C0D4DEADCB5EAA /* Pods-Segment-Appboy_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-Appboy_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Segment-Appboy_Tests/Pods-Segment-Appboy_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		2AF177CC51F0E4C8BFF06EC5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		47A5C34922B452CD000D95A2 /* SEGAppboyAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGAppboyAdditions.m; sourceTree = "<group>"; };
 		589BD37A4C260FD9A3C992C7 /* Pods_Segment_Appboy_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Segment_Appboy_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* Segment-Appboy_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Segment-Appboy_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				6003F5BB195388D20070C39A /* SEGAppboyIntegrationTest.m */,
+				47A5C34922B452CD000D95A2 /* SEGAppboyAdditions.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -414,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A5C34A22B452CD000D95A2 /* SEGAppboyAdditions.m in Sources */,
 				6003F5BC195388D20070C39A /* SEGAppboyIntegrationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
