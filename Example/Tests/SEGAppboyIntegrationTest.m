@@ -7,11 +7,12 @@
 SpecBegin(InitialSpecs)
 
 describe(@"SEGAppboyIntegration", ^{
+
   describe(@"initWithSettings", ^{
     it(@"initializes appboy if an apiKey is passed", ^{
       NSDictionary *settings = @{@"apiKey":@"foo"};
       id appboyMock = OCMClassMock([Appboy class]);
-      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil]);
+      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil withAppboyOptions:[OCMArg any]]);
       SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
       OCMVerifyAllWithDelay(appboyMock, 2);
     });
@@ -29,7 +30,6 @@ describe(@"SEGAppboyIntegration", ^{
       id appboyUserMock = OCMClassMock([ABKUser class]);
       OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
       OCMStub([appboyMock user]).andReturn(appboyUserMock);
-      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil]);
       OCMExpect([appboyMock changeUser:@"testUser"]);
       OCMExpect([appboyUserMock setDateOfBirth:testDate]);
       OCMExpect([appboyUserMock setEmail:@"brian@appboy.com"]);
@@ -72,7 +72,6 @@ describe(@"SEGAppboyIntegration", ^{
       id appboyUserMock = OCMClassMock([ABKUser class]);
       OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
       OCMStub([appboyMock user]).andReturn(appboyUserMock);
-      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil]);
       OCMExpect([appboyMock changeUser:@"testUser"]);
       
       SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
@@ -104,7 +103,6 @@ describe(@"SEGAppboyIntegration", ^{
       NSDictionary *settings = @{@"apiKey":@"foo"};
       id appboyMock = OCMClassMock([Appboy class]);
       OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
-      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil]);
       OCMExpect([appboyMock logPurchase:@"testPurchase" inCurrency:@"USD" atPrice:[NSDecimalNumber decimalNumberWithString:@"55.5"]
                            withQuantity:1 andProperties:@{@"extraProperty" : @"extraValue"}]);
       
@@ -128,7 +126,6 @@ describe(@"SEGAppboyIntegration", ^{
       NSDictionary *settings = @{@"apiKey":@"foo"};
       id appboyMock = OCMClassMock([Appboy class]);
       OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
-      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil]);
       NSDictionary *propertiesDictionary = @{ @"asdf" : @1, @"extraProperty" : @"extraValue"};
       OCMExpect([appboyMock logCustomEvent:@"testEvent" withProperties:propertiesDictionary]);
       
@@ -153,7 +150,6 @@ describe(@"SEGAppboyIntegration", ^{
       NSDictionary *settings = @{@"apiKey":@"foo"};
       id appboyMock = OCMClassMock([Appboy class]);
       OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
-      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil]);
       OCMExpect([appboyMock flushDataAndProcessRequestQueue]);
       SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
       [appboyIntegration flush];
@@ -167,7 +163,6 @@ describe(@"SEGAppboyIntegration", ^{
       NSData *registerData = [[NSData alloc] init];
       id appboyMock = OCMClassMock([Appboy class]);
       OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
-      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil]);
       OCMExpect([appboyMock registerPushToken:[OCMArg any]]);
       SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
       [appboyIntegration registeredForRemoteNotificationsWithDeviceToken:registerData];
@@ -181,7 +176,6 @@ describe(@"SEGAppboyIntegration", ^{
       NSDictionary *userInfo = @{@"test":@"userInfo"};
       id appboyMock = OCMClassMock([Appboy class]);
       OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
-      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil]);
       OCMExpect([appboyMock registerApplication:[OCMArg any] didReceiveRemoteNotification:userInfo]);
       SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
       [appboyIntegration receivedRemoteNotification:userInfo];
