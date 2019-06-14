@@ -33,6 +33,11 @@
 
 @implementation SEGAppboyIntegration
 
+- (id)initWithSettings:(NSDictionary *)settings
+{
+  return [self initWithSettings:settings integrationOptions:nil];
+}
+
 - (id)initWithSettings:(NSDictionary *)settings integrationOptions:(SEGAppboyIntegrationOptions *)options
 {
   if (self = [super init]) {
@@ -50,7 +55,7 @@
         [[SEGAppboyIntegrationEndpointDelegate alloc] initWithCustomEndpoint:customEndpoint];
       appboyOptions[ABKAppboyEndpointDelegateKey] = endpointDelegate;
     }
-    
+
     if ([NSThread isMainThread]) {
       [Appboy startWithApiKey:appboyAPIKey
                 inApplication:[UIApplication sharedApplication]
