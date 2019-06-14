@@ -12,7 +12,7 @@
 #import "SEGAppboyIntegrationFactory.h"
 #import "SEGAppboyIntegrationEndpointDelegate.h"
 #import "SEGAppboyIntegrationOptions.h"
-#import "NSDictionary+SEGAppboyAdditions.h"
+#import "SEGAppboyAdditions.h"
 
 static NSString *UserDefaultsDomain = @"com.appboy.segment.userTraits";
 
@@ -324,7 +324,7 @@ static NSString *UserDefaultsDomain = @"com.appboy.segment.userTraits";
 
 - (void)applicationWillResignActive {
   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-  [userDefaults setObject:self.userTraits forKey:UserDefaultsDomain];
+  [userDefaults setObject:[self.userTraits sega_serializableDictionary] forKey:UserDefaultsDomain];
 }
 
 @end
