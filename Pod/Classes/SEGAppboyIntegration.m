@@ -14,6 +14,7 @@
 #import "SEGAppboyIntegrationOptions.h"
 #import "NSDictionary+SEGAppboyAdditions.h"
 
+static NSString *UserDefaultsDomain = @"com.appboy.segment.userTraits";
 
 @interface Appboy(Segment)
 - (void) handleRemotePushNotification:(NSDictionary *)notification
@@ -30,6 +31,7 @@
 @interface SEGAppboyIntegration()
 
 @property (nonatomic, nullable, strong) SEGAppboyIntegrationOptions *integrationOptions;
+@property (nonatomic, nonnull, strong) NSMutableDictionary *userTraits;
 
 @end
 
@@ -73,6 +75,10 @@
         SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]");
       });
     }
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userTraits = [NSMutableDictionary dictionaryWithDictionary:[userDefaults dictionaryForKey:UserDefaultsDomain]];
+    self.userTraits = userTraits;
   }
   
   if ([Appboy sharedInstance] != nil) {
@@ -96,9 +102,11 @@
     return;
   }
 
-  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-  NSDictionary *userTraits = [NSDictionary dictionaryWithDictionary:[userDefaults dictionaryForKey:@"com.appboy.segment.userTraits"]];
-  NSDictionary *newUserTraits = [userTraits sega_newOrDifferentEntriesFrom:payload.traits];
+  NSDictionary *traits = payload.traits;
+
+  if (self.integrationOptions.enableTraitDiffing) {
+    traits = [[self.userTraits sega_newOrDifferentEntriesFrom:payload.traits] mutableCopy];
+  }
 
   NSString *userId = payload.userId;
   if (userId != nil && userId != 0) {
@@ -109,33 +117,33 @@
     SEGLog(@"[[Appboy sharedInstance] changeUser:%@]", userId);
   }
   
-  if ([newUserTraits[@"birthday"] isKindOfClass:[NSString class]]) {
+  if ([traits[@"birthday"] isKindOfClass:[NSString class]]) {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
     [dateFormatter setLocale:enUSPOSIXLocale];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
-    [Appboy sharedInstance].user.dateOfBirth = [dateFormatter dateFromString:newUserTraits[@"birthday"]];
+    [Appboy sharedInstance].user.dateOfBirth = [dateFormatter dateFromString:traits[@"birthday"]];
     SEGLog(@"Logged [Appboy sharedInstance].user.dateOfBirth");
   }
   
-  if ([newUserTraits[@"email"] isKindOfClass:[NSString class]]) {
-    [Appboy sharedInstance].user.email = newUserTraits[@"email"];
+  if ([traits[@"email"] isKindOfClass:[NSString class]]) {
+    [Appboy sharedInstance].user.email = traits[@"email"];
     SEGLog(@"Logged [Appboy sharedInstance].user.email");
   }
   
-  if ([newUserTraits[@"firstName"] isKindOfClass:[NSString class]]) {
-    [Appboy sharedInstance].user.firstName = newUserTraits[@"firstName"];
+  if ([traits[@"firstName"] isKindOfClass:[NSString class]]) {
+    [Appboy sharedInstance].user.firstName = traits[@"firstName"];
     SEGLog(@"Logged [Appboy sharedInstance].user.firstName");
   }
   
-  if ([newUserTraits[@"lastName"] isKindOfClass:[NSString class]]) {
-    [Appboy sharedInstance].user.lastName = newUserTraits[@"lastName"];
+  if ([traits[@"lastName"] isKindOfClass:[NSString class]]) {
+    [Appboy sharedInstance].user.lastName = traits[@"lastName"];
     SEGLog(@"Logged [Appboy sharedInstance].user.lastName");
   }
   
   // Appboy only accepts "m" or "male" for gender male, and "f" or "female" for gender female, with case insensitive.
-  if ([newUserTraits[@"gender"] isKindOfClass:[NSString class]]) {
-    NSString *gender = newUserTraits[@"gender"];
+  if ([traits[@"gender"] isKindOfClass:[NSString class]]) {
+    NSString *gender = traits[@"gender"];
     if ([gender.lowercaseString isEqualToString:@"m"] || [gender.lowercaseString isEqualToString:@"male"]) {
       [[Appboy sharedInstance].user setGender:ABKUserGenderMale];
       SEGLog(@"[[Appboy sharedInstance].user setGender:]");
@@ -145,13 +153,13 @@
     }
   }
   
-  if ([newUserTraits[@"phone"] isKindOfClass:[NSString class]]) {
-    [Appboy sharedInstance].user.phone = newUserTraits[@"phone"];
+  if ([traits[@"phone"] isKindOfClass:[NSString class]]) {
+    [Appboy sharedInstance].user.phone = traits[@"phone"];
     SEGLog(@"Logged [Appboy sharedInstance].user.phone");
   }
   
-  if ([newUserTraits[@"address"] isKindOfClass:[NSDictionary class]]) {
-    NSDictionary *address = newUserTraits[@"address"];
+  if ([traits[@"address"] isKindOfClass:[NSDictionary class]]) {
+    NSDictionary *address = traits[@"address"];
     if ([address[@"city"] isKindOfClass:[NSString class]]) {
       [Appboy sharedInstance].user.homeCity = address[@"city"];
       SEGLog(@"Logged [Appboy sharedInstance].user.homeCity");
@@ -166,9 +174,9 @@
   NSArray *appboyTraits = @[@"birthday", @"email", @"firstName", @"lastName",  @"gender", @"phone", @"address", @"anonymousID"];
   
   // Other traits. Iterate over all the traits and set them.
-  for (NSString *key in newUserTraits.allKeys) {
+  for (NSString *key in traits.allKeys) {
     if (![appboyTraits containsObject:key]) {
-      id traitValue = newUserTraits[key];
+      id traitValue = traits[key];
       if ([traitValue isKindOfClass:[NSString class]]) {
         [[Appboy sharedInstance].user setCustomAttributeWithKey:key andStringValue:traitValue];
         SEGLog(@"[[Appboy sharedInstance].user setCustomAttributeWithKey: andStringValue:]");
@@ -198,9 +206,7 @@
     }
   }
 
-  NSMutableDictionary *updatedUserTraits = [userTraits mutableCopy];
-  [updatedUserTraits addEntriesFromDictionary:newUserTraits];
-  [userDefaults setObject:updatedUserTraits forKey:@"com.appboy.segment.userTraits"];
+  [self.userTraits addEntriesFromDictionary:traits];
 }
 
 - (void)track:(SEGTrackPayload *)payload
@@ -310,4 +316,15 @@
   }
   return NO;
 }
+
+- (void)reset {
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  [userDefaults removeObjectForKey:UserDefaultsDomain];
+}
+
+- (void)applicationWillResignActive {
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  [userDefaults setObject:self.userTraits forKey:UserDefaultsDomain];
+}
+
 @end
