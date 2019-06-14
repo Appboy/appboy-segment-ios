@@ -77,7 +77,7 @@ static NSString *UserDefaultsDomain = @"com.appboy.segment.userTraits";
     }
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *userTraits = [NSMutableDictionary dictionaryWithDictionary:[userDefaults dictionaryForKey:UserDefaultsDomain]];
+    NSMutableDictionary *userTraits = [NSMutableDictionary dictionaryWithDictionary:[userDefaults dictionaryForKey:UserDefaultsDomain]];
     self.userTraits = userTraits;
   }
   
