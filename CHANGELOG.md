@@ -1,3 +1,7 @@
+## 2.0.3
+* Fixed an issue where the Braze endpoint delegate would not correctly set the Segment-side configured endpoint when using Braze iOS SDK 3.14.1+.
+* Added the ability to import only the `Appboy-iOS-SDK/Core` subspec instead of the full SDK. To do this, update your `Podfile` to use the `Segment-Appboy/Core` subspec instead of `Segment-Appboy`. `Segment-Appboy` will continue to use the full SDK by default.
+
 ## 2.0.2
 * Supports analytics-ios 3.+ and Braze 3.10.0+.
 * Fixes a potential race condition when calling `identify`.

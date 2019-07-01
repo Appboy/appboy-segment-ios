@@ -3,11 +3,13 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 target 'Segment-Appboy_Example' do
+  platform :ios, '9.0'
   pod "Segment-Appboy", :path => "../"
   pod 'Analytics'
 end
 
 target 'Segment-Appboy_Tests' do
+  platform :ios, '9.0'
   pod "Segment-Appboy", :path => "../"
   pod 'Analytics'
   pod 'Specta'

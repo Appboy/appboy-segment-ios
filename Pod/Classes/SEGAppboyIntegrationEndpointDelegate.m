@@ -10,7 +10,8 @@
 }
 
 - (NSString *)getApiEndpoint:(NSString *)appboyApiEndpoint {
-  return [appboyApiEndpoint stringByReplacingOccurrencesOfString:@"dev.appboy.com" withString:self.customEndpoint];
+  NSString *customEndpoint = [appboyApiEndpoint stringByReplacingOccurrencesOfString:@"dev.appboy.com" withString:self.customEndpoint];
+  return [customEndpoint stringByReplacingOccurrencesOfString:@"sdk.iad-01.braze.com" withString:self.customEndpoint];
 }
 
 @end
