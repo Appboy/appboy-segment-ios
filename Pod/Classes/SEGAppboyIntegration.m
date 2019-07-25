@@ -98,10 +98,6 @@ static NSString *UserDefaultsDomain = @"com.appboy.segment.userTraits";
     return;
   }
 
-  if (self.integrationOptions.disableIdentifyEvents) {
-    return;
-  }
-
   NSDictionary *traits = payload.traits;
 
   if (self.integrationOptions.enableTraitDiffing) {

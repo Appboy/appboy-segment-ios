@@ -196,27 +196,6 @@ describe(@"SEGAppboyIntegration", ^{
       OCMStub([appboyMock user]).andReturn(appboyUserMock);
     });
 
-    it(@"Ignores identify calls if required", ^{
-      OCMReject([appboyUserMock setCustomAttributeWithKey:@"foo" andStringValue:@"bar"]);
-
-      SEGAppboyIntegrationOptions *options = [[SEGAppboyIntegrationOptions alloc] init];
-      options.disableIdentifyEvents = YES;
-      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings integrationOptions:options];
-
-      NSDictionary *traits = @{
-        @"foo" : @"bar",
-      };
-      SEGIdentifyPayload *identifyPayload = [[SEGIdentifyPayload alloc] initWithUserId:@"testUser"
-                                                                           anonymousId:nil
-                                                                                traits:traits
-                                                                               context:@{}
-                                                                          integrations:@{}];
-
-      [appboyIntegration identify:identifyPayload];
-      OCMVerifyAll(appboyMock);
-      OCMVerifyAll(appboyUserMock);
-    });
-
     it(@"Transforms the user ID if required", ^{
       OCMExpect([appboyMock changeUser:@"John Smith"]);
 
