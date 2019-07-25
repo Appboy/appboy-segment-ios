@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NSDictionary+SEGAppboyAdditions.h"
+#import "SEGAppboyAdditions.h"
 
 @interface SEGAppboyAdditions : XCTestCase
 
