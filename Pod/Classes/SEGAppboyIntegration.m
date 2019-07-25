@@ -320,6 +320,7 @@ static NSString *UserDefaultsDomain = @"com.appboy.segment.userTraits";
 - (void)reset {
   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
   [userDefaults removeObjectForKey:UserDefaultsDomain];
+  [self.userTraits removeAllObjects];
 }
 
 - (void)applicationWillResignActive {
