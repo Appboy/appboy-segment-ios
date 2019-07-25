@@ -3,6 +3,7 @@
 #import <OCMock/OCMock.h>
 #import <Analytics/SEGIntegration.h>
 #import "SEGAnalyticsUtils.h"
+#import "SEGAppboyIntegrationOptions.h"
 
 SpecBegin(InitialSpecs)
 
@@ -182,6 +183,143 @@ describe(@"SEGAppboyIntegration", ^{
       OCMVerifyAllWithDelay(appboyMock, 2);
     });
   });
+
+  describe(@"Integration options", ^{
+    NSDictionary *settings = @{@"apiKey":@"foo"};
+    __block id appboyMock;
+    __block id appboyUserMock;
+
+    beforeEach(^{
+      appboyMock = OCMClassMock([Appboy class]);
+      appboyUserMock = OCMClassMock([ABKUser class]);
+      OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
+      OCMStub([appboyMock user]).andReturn(appboyUserMock);
+    });
+
+    it(@"Ignores identify calls if required", ^{
+      OCMReject([appboyUserMock setCustomAttributeWithKey:@"foo" andStringValue:@"bar"]);
+
+      SEGAppboyIntegrationOptions *options = [[SEGAppboyIntegrationOptions alloc] init];
+      options.disableIdentifyEvents = YES;
+      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings integrationOptions:options];
+
+      NSDictionary *traits = @{
+        @"foo" : @"bar",
+      };
+      SEGIdentifyPayload *identifyPayload = [[SEGIdentifyPayload alloc] initWithUserId:@"testUser"
+                                                                           anonymousId:nil
+                                                                                traits:traits
+                                                                               context:@{}
+                                                                          integrations:@{}];
+
+      [appboyIntegration identify:identifyPayload];
+      OCMVerifyAll(appboyMock);
+      OCMVerifyAll(appboyUserMock);
+    });
+
+    it(@"Transforms the user ID if required", ^{
+      OCMExpect([appboyMock changeUser:@"John Smith"]);
+
+      SEGAppboyIntegrationOptions *options = [[SEGAppboyIntegrationOptions alloc] init];
+      [options setUserIdMapper:^NSString * _Nonnull(NSString * _Nonnull segmentUserId) {
+        return [segmentUserId stringByAppendingString:@" Smith"];
+      }];
+      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings integrationOptions:options];
+
+      SEGIdentifyPayload *identifyPayload = [[SEGIdentifyPayload alloc] initWithUserId:@"John"
+                                                                           anonymousId:nil
+                                                                                traits:nil
+                                                                               context:@{}
+                                                                          integrations:@{}];
+
+      [appboyIntegration identify:identifyPayload];
+
+      OCMVerifyAll(appboyMock);
+      OCMVerifyAll(appboyUserMock);
+    });
+
+    it(@"Forward only changed traits if asked to do so", ^{
+
+      SEGAppboyIntegrationOptions *options = [[SEGAppboyIntegrationOptions alloc] init];
+      options.enableTraitDiffing = YES;
+      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings integrationOptions:options];
+
+      NSDictionary *firstTraits = @{
+        @"trait1" : @"value1",
+      };
+      SEGIdentifyPayload *firstPayload = [[SEGIdentifyPayload alloc] initWithUserId:@"testUser"
+                                                                           anonymousId:nil
+                                                                                traits:firstTraits
+                                                                               context:@{}
+                                                                          integrations:@{}];
+
+      OCMExpect([appboyUserMock setCustomAttributeWithKey:@"trait1" andStringValue:@"value1"]);
+      [appboyIntegration identify:firstPayload];
+      OCMVerifyAll(appboyUserMock);
+
+      NSDictionary *secondTraits = @{
+        @"trait1" : @"value1",
+        @"trait2" : @"value2",
+      };
+      SEGIdentifyPayload *secondPayload = [[SEGIdentifyPayload alloc] initWithUserId:@"testUser"
+                                                                           anonymousId:nil
+                                                                                traits:secondTraits
+                                                                               context:@{}
+                                                                          integrations:@{}];
+
+      OCMReject([appboyUserMock setCustomAttributeWithKey:@"trait1" andStringValue:@"value1"]);
+      OCMExpect([appboyUserMock setCustomAttributeWithKey:@"trait2" andStringValue:@"value2"]);
+      [appboyIntegration identify:secondPayload];
+      OCMVerifyAll(appboyUserMock);
+
+      NSDictionary *thirTraits = @{
+        @"trait1" : @"value3",
+        @"trait2" : @"value2",
+      };
+      SEGIdentifyPayload *thirdPayload = [[SEGIdentifyPayload alloc] initWithUserId:@"testUser"
+                                                                           anonymousId:nil
+                                                                                traits:thirTraits
+                                                                               context:@{}
+                                                                          integrations:@{}];
+
+      OCMExpect([appboyUserMock setCustomAttributeWithKey:@"trait1" andStringValue:@"value3"]);
+      OCMReject([appboyUserMock setCustomAttributeWithKey:@"trait2" andStringValue:@"value2"]);
+      [appboyIntegration identify:thirdPayload];
+
+      OCMVerifyAll(appboyMock);
+      OCMVerifyAll(appboyUserMock);
+    });
+
+    it(@"Resets user traits after calling reset", ^{
+
+      SEGAppboyIntegrationOptions *options = [[SEGAppboyIntegrationOptions alloc] init];
+      options.enableTraitDiffing = YES;
+      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings integrationOptions:options];
+
+      NSDictionary *traits = @{
+        @"trait1" : @"value1",
+      };
+      SEGIdentifyPayload *firstPayload = [[SEGIdentifyPayload alloc] initWithUserId:@"testUser"
+                                                                           anonymousId:nil
+                                                                                traits:traits
+                                                                               context:@{}
+                                                                          integrations:@{}];
+      SEGIdentifyPayload *secondPayload = [[SEGIdentifyPayload alloc] initWithUserId:@"testUser"
+                                                                           anonymousId:nil
+                                                                              traits:traits
+                                                                               context:@{}
+                                                                          integrations:@{}];
+      [appboyIntegration identify:firstPayload];
+      [appboyIntegration reset];
+
+      OCMExpect([appboyUserMock setCustomAttributeWithKey:@"trait1" andStringValue:@"value1"]);
+      [appboyIntegration identify:secondPayload];
+
+      OCMVerifyAll(appboyMock);
+      OCMVerifyAll(appboyUserMock);
+    });
+  });
+
 });
 
 SpecEnd
