@@ -11,6 +11,10 @@
 #import <Analytics/SEGAnalyticsUtils.h>
 #import "SEGAppboyIntegrationFactory.h"
 #import "SEGAppboyIntegrationEndpointDelegate.h"
+#import "SEGAppboyIntegrationOptions.h"
+#import "SEGAppboyAdditions.h"
+
+static NSString *UserDefaultsDomain = @"com.appboy.segment.userTraits";
 
 @interface Appboy(Segment)
 - (void) handleRemotePushNotification:(NSDictionary *)notification
@@ -24,12 +28,25 @@
 - (NSDictionary *) getPushPayload;
 @end
 
+@interface SEGAppboyIntegration()
+
+@property (nonatomic, nullable, strong) SEGAppboyIntegrationOptions *integrationOptions;
+@property (nonatomic, nonnull, strong) NSMutableDictionary *userTraits;
+
+@end
+
 @implementation SEGAppboyIntegration
 
 - (id)initWithSettings:(NSDictionary *)settings
 {
+  return [self initWithSettings:settings integrationOptions:nil];
+}
+
+- (id)initWithSettings:(NSDictionary *)settings integrationOptions:(SEGAppboyIntegrationOptions *)options
+{
   if (self = [super init]) {
     self.settings = settings;
+    self.integrationOptions = options;
     id appboyAPIKey = self.settings[@"apiKey"];
     if (![appboyAPIKey isKindOfClass:[NSString class]] || [appboyAPIKey length] == 0) {
       return nil;
@@ -42,7 +59,7 @@
         [[SEGAppboyIntegrationEndpointDelegate alloc] initWithCustomEndpoint:customEndpoint];
       appboyOptions[ABKAppboyEndpointDelegateKey] = endpointDelegate;
     }
-    
+
     if ([NSThread isMainThread]) {
       [Appboy startWithApiKey:appboyAPIKey
                 inApplication:[UIApplication sharedApplication]
@@ -58,6 +75,10 @@
         SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]");
       });
     }
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *userTraits = [NSMutableDictionary dictionaryWithDictionary:[userDefaults dictionaryForKey:UserDefaultsDomain]];
+    self.userTraits = userTraits;
   }
   
   if ([Appboy sharedInstance] != nil) {
@@ -76,39 +97,49 @@
     });
     return;
   }
-  // Ensure that the userID is set and valid (i.e. a non-empty string).
-  if (payload.userId != nil && [payload.userId length] != 0) {
-    [[Appboy sharedInstance] changeUser:payload.userId];
-    SEGLog(@"[[Appboy sharedInstance] changeUser:%@]", payload.userId);
+
+  NSDictionary *traits = payload.traits;
+
+  if (self.integrationOptions.enableTraitDiffing) {
+    traits = [[self.userTraits sega_newOrDifferentEntriesFrom:payload.traits] mutableCopy];
+  }
+
+  NSString *userId = payload.userId;
+  if (userId != nil && userId != 0) {
+    if (self.integrationOptions.userIdMapper != nil) {
+      userId = self.integrationOptions.userIdMapper(userId);
+    }
+    [[Appboy sharedInstance] changeUser:userId];
+    SEGLog(@"[[Appboy sharedInstance] changeUser:%@]", userId);
   }
   
-  if ([payload.traits[@"birthday"] isKindOfClass:[NSString class]]) {
+  if ([traits[@"birthday"] isKindOfClass:[NSString class]]) {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
     [dateFormatter setLocale:enUSPOSIXLocale];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
-    [Appboy sharedInstance].user.dateOfBirth = [dateFormatter dateFromString:payload.traits[@"birthday"]];
+    [Appboy sharedInstance].user.dateOfBirth = [dateFormatter dateFromString:traits[@"birthday"]];
     SEGLog(@"Logged [Appboy sharedInstance].user.dateOfBirth");
   }
   
-  if ([payload.traits[@"email"] isKindOfClass:[NSString class]]) {
-    [Appboy sharedInstance].user.email = payload.traits[@"email"];
+  if ([traits[@"email"] isKindOfClass:[NSString class]]) {
+    [Appboy sharedInstance].user.email = traits[@"email"];
     SEGLog(@"Logged [Appboy sharedInstance].user.email");
   }
   
-  if ([payload.traits[@"firstName"] isKindOfClass:[NSString class]]) {
-    [Appboy sharedInstance].user.firstName = payload.traits[@"firstName"];
+  if ([traits[@"firstName"] isKindOfClass:[NSString class]]) {
+    [Appboy sharedInstance].user.firstName = traits[@"firstName"];
     SEGLog(@"Logged [Appboy sharedInstance].user.firstName");
   }
   
-  if ([payload.traits[@"lastName"] isKindOfClass:[NSString class]]) {
-    [Appboy sharedInstance].user.lastName = payload.traits[@"lastName"];
+  if ([traits[@"lastName"] isKindOfClass:[NSString class]]) {
+    [Appboy sharedInstance].user.lastName = traits[@"lastName"];
     SEGLog(@"Logged [Appboy sharedInstance].user.lastName");
   }
   
   // Appboy only accepts "m" or "male" for gender male, and "f" or "female" for gender female, with case insensitive.
-  if ([payload.traits[@"gender"] isKindOfClass:[NSString class]]) {
-    NSString *gender = payload.traits[@"gender"];
+  if ([traits[@"gender"] isKindOfClass:[NSString class]]) {
+    NSString *gender = traits[@"gender"];
     if ([gender.lowercaseString isEqualToString:@"m"] || [gender.lowercaseString isEqualToString:@"male"]) {
       [[Appboy sharedInstance].user setGender:ABKUserGenderMale];
       SEGLog(@"[[Appboy sharedInstance].user setGender:]");
@@ -118,13 +149,13 @@
     }
   }
   
-  if ([payload.traits[@"phone"] isKindOfClass:[NSString class]]) {
-    [Appboy sharedInstance].user.phone = payload.traits[@"phone"];
+  if ([traits[@"phone"] isKindOfClass:[NSString class]]) {
+    [Appboy sharedInstance].user.phone = traits[@"phone"];
     SEGLog(@"Logged [Appboy sharedInstance].user.phone");
   }
   
-  if ([payload.traits[@"address"] isKindOfClass:[NSDictionary class]]) {
-    NSDictionary *address = payload.traits[@"address"];
+  if ([traits[@"address"] isKindOfClass:[NSDictionary class]]) {
+    NSDictionary *address = traits[@"address"];
     if ([address[@"city"] isKindOfClass:[NSString class]]) {
       [Appboy sharedInstance].user.homeCity = address[@"city"];
       SEGLog(@"Logged [Appboy sharedInstance].user.homeCity");
@@ -139,9 +170,9 @@
   NSArray *appboyTraits = @[@"birthday", @"email", @"firstName", @"lastName",  @"gender", @"phone", @"address", @"anonymousID"];
   
   // Other traits. Iterate over all the traits and set them.
-  for (NSString *key in payload.traits.allKeys) {
+  for (NSString *key in traits.allKeys) {
     if (![appboyTraits containsObject:key]) {
-      id traitValue = payload.traits[key];
+      id traitValue = traits[key];
       if ([traitValue isKindOfClass:[NSString class]]) {
         [[Appboy sharedInstance].user setCustomAttributeWithKey:key andStringValue:traitValue];
         SEGLog(@"[[Appboy sharedInstance].user setCustomAttributeWithKey: andStringValue:]");
@@ -170,6 +201,8 @@
       }
     }
   }
+
+  [self.userTraits addEntriesFromDictionary:traits];
 }
 
 - (void)track:(SEGTrackPayload *)payload
@@ -279,4 +312,16 @@
   }
   return NO;
 }
+
+- (void)reset {
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  [userDefaults removeObjectForKey:UserDefaultsDomain];
+  [self.userTraits removeAllObjects];
+}
+
+- (void)applicationWillResignActive {
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  [userDefaults setObject:[self.userTraits sega_serializableDictionary] forKey:UserDefaultsDomain];
+}
+
 @end

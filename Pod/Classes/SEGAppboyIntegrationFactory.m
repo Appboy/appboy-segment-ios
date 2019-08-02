@@ -1,5 +1,6 @@
 #import "SEGAppboyIntegrationFactory.h"
 #import "SEGAppboyIntegration.h"
+#import "SEGAppboyIntegrationOptions.h"
 
 @interface SEGAppboyIntegrationFactory ()
 @property NSDictionary *savedPushPayload;
@@ -25,7 +26,7 @@
 
 - (id<SEGIntegration>)createWithSettings:(NSDictionary *)settings forAnalytics:(SEGAnalytics *)analytics
 {
-  return [[SEGAppboyIntegration alloc] initWithSettings:settings];
+  return [[SEGAppboyIntegration alloc] initWithSettings:settings integrationOptions:self.integrationOptions];
 }
 
 - (NSString *)key

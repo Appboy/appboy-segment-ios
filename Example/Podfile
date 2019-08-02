@@ -1,14 +1,16 @@
 source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
 
+inhibit_all_warnings!
 use_frameworks!
 
 target 'Segment-Appboy_Example' do
-  pod "Segment-Appboy", :path => "../"
+  pod "Segment-Appboy", :path => "../", :inhibit_warnings => false
   pod 'Analytics'
 end
 
 target 'Segment-Appboy_Tests' do
-  pod "Segment-Appboy", :path => "../"
+  pod "Segment-Appboy", :path => "../", :inhibit_warnings => false
   pod 'Analytics'
   pod 'Specta'
   pod 'Expecta'
