@@ -10,7 +10,6 @@
 #endif
 #import <Analytics/SEGAnalyticsUtils.h>
 #import "SEGAppboyIntegrationFactory.h"
-#import "SEGAppboyIntegrationEndpointDelegate.h"
 
 @interface Appboy(Segment)
 - (void) handleRemotePushNotification:(NSDictionary *)notification
@@ -35,14 +34,7 @@
       return nil;
     }
     
-    NSMutableDictionary *appboyOptions = [@{ABKSDKFlavorKey : @(SEGMENT)} mutableCopy];
-    NSString *customEndpoint = self.settings[@"customEndpoint"];
-    if (customEndpoint && [customEndpoint length] != 0) {
-      SEGAppboyIntegrationEndpointDelegate *endpointDelegate =
-        [[SEGAppboyIntegrationEndpointDelegate alloc] initWithCustomEndpoint:customEndpoint];
-      appboyOptions[ABKAppboyEndpointDelegateKey] = endpointDelegate;
-    }
-    
+    NSDictionary *appboyOptions = [@{ABKSDKFlavorKey : @(SEGMENT)} mutableCopy];
     if ([NSThread isMainThread]) {
       [Appboy startWithApiKey:appboyAPIKey
                 inApplication:[UIApplication sharedApplication]
