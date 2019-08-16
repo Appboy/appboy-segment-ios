@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Full-SDK'
 
   s.subspec 'Full-SDK' do |default|
-    default.dependency 'Appboy-iOS-SDK', '3.16.0'
+    default.dependency 'Appboy-iOS-SDK'
     default.source_files = 'Pod/Classes/**/*'
   end
 
