@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.author           = { "Appboy" => "hello@braze.com" }
   s.source           = { :git => "https://github.com/appboy/appboy-segment-ios.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '9.0'
   s.requires_arc = true
 
   s.dependency 'Analytics', '~> 3.0'
