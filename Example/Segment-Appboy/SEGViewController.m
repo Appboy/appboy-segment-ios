@@ -1,7 +1,6 @@
 #import "SEGViewController.h"
 #import "SEGAnalytics.h"
 #import "AppboyKit.h"
-#import "ABKModalFeedbackViewController.h"
 #import "ABKNewsFeedViewController.h"
 
 @interface SEGViewController ()
@@ -85,19 +84,11 @@
                                                          @"ad_group" : @"Red Ones"}}];
 }
 
-- (IBAction)feedbackButtonPress:(id)sender {
-  // gate Appboy functionality based on [Appboy sharedInstance].
-  if ([Appboy sharedInstance] != nil) {
-    ABKModalFeedbackViewController *feedbackViewController = [[ABKModalFeedbackViewController alloc] init];
-    [self presentViewController:feedbackViewController animated:YES completion:nil];
-  }
-}
-
 - (IBAction)feedButtonPress:(id)sender {
   if ([Appboy sharedInstance] != nil) {
     // gate Appboy functionality based on [Appboy sharedInstance].
     ABKNewsFeedViewController *newsFeed = [[ABKNewsFeedViewController alloc] init];
-    [self.navigationController presentViewController:newsFeed animated:YES completion:nil];
+    [self presentViewController:newsFeed animated:YES completion:nil];
   }
 }
 @end
