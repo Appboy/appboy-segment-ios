@@ -232,8 +232,8 @@
 // Appboy uses this to send push messages to the device, so forward it to Appboy.
 - (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-  [[Appboy sharedInstance] registerPushToken:[NSString stringWithFormat:@"%@", deviceToken]];
-  SEGLog(@"[[Appboy sharedInstance] registerPushToken:]");
+  [[Appboy sharedInstance] registerDeviceToken:deviceToken];
+  SEGLog(@"[[Appboy sharedInstance] registerDeviceToken:]");
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
