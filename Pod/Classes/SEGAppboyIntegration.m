@@ -27,6 +27,11 @@
 
 - (id)initWithSettings:(NSDictionary *)settings
 {
+  return [[SEGAppboyIntegration alloc] initWithSettings:settings idfaDelegate:nil];
+}
+
+- (id)initWithSettings:(NSDictionary *)settings idfaDelegate:(id<ABKIDFADelegate>)idfaDelegate
+{
   if (self = [super init]) {
     self.settings = settings;
     id appboyAPIKey = self.settings[@"apiKey"];
@@ -38,6 +43,10 @@
     NSString *customEndpoint = self.settings[@"customEndpoint"];
     if (customEndpoint && [customEndpoint length] != 0) {
       appboyOptions[ABKEndpointKey] = customEndpoint;
+    }
+
+    if (idfaDelegate) {
+      appboyOptions[ABKIDFADelegateKey] = idfaDelegate;
     }
     
     if ([NSThread isMainThread]) {

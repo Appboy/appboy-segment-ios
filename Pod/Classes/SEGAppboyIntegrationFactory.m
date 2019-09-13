@@ -7,6 +7,8 @@
 
 @implementation SEGAppboyIntegrationFactory
 
+id<ABKIDFADelegate> _idfaDelegate;
+
 + (instancetype)instance
 {
   static dispatch_once_t once;
@@ -17,15 +19,27 @@
   return sharedInstance;
 }
 
++ (instancetype)withIDFADelegate:(id<ABKIDFADelegate>)idfaDelegate
+{
+  SEGAppboyIntegrationFactory *instance = [SEGAppboyIntegrationFactory instance];
+  [instance setIDFADelegate:idfaDelegate];
+  return instance;
+}
+
 - (id)init
 {
   self = [super init];
   return self;
 }
 
+- (void)setIDFADelegate:(id<ABKIDFADelegate>)idfaDelegate
+{
+  _idfaDelegate = idfaDelegate;
+}
+
 - (id<SEGIntegration>)createWithSettings:(NSDictionary *)settings forAnalytics:(SEGAnalytics *)analytics
 {
-  return [[SEGAppboyIntegration alloc] initWithSettings:settings];
+  return [[SEGAppboyIntegration alloc] initWithSettings:settings idfaDelegate:_idfaDelegate];
 }
 
 - (NSString *)key
