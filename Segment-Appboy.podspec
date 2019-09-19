@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-Appboy"
-  s.version          = "2.2.1"
+  s.version          = "2.2.2"
   s.summary          = "Braze Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
@@ -22,12 +22,12 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Full-SDK'
 
   s.subspec 'Full-SDK' do |default|
-    default.dependency 'Appboy-iOS-SDK', '~>3.20.1'
+    default.dependency 'Appboy-iOS-SDK', '~>3.20.2'
     default.source_files = 'Pod/Classes/**/*'
   end
 
   s.subspec 'Core' do |core|
-    core.dependency 'Appboy-iOS-SDK/Core', '~>3.20.1'
+    core.dependency 'Appboy-iOS-SDK/Core', '~>3.20.2'
     core.source_files = 'Pod/Classes/**/*'
   end
 
