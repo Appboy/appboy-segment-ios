@@ -1,5 +1,4 @@
 #import "SEGAppboyIntegrationFactory.h"
-#import "SEGAppboyIntegration.h"
 
 @interface SEGAppboyIntegrationFactory ()
 @property NSDictionary *savedPushPayload;
@@ -7,7 +6,7 @@
 
 @implementation SEGAppboyIntegrationFactory
 
-id<ABKIDFADelegate> _idfaDelegate;
+NSDictionary *_localConfiguration;
 
 + (instancetype)instance
 {
@@ -19,10 +18,10 @@ id<ABKIDFADelegate> _idfaDelegate;
   return sharedInstance;
 }
 
-+ (instancetype)withIDFADelegate:(id<ABKIDFADelegate>)idfaDelegate
++ (instancetype)withLocalConfiguration:(AppBoyConfiguration *)localConfiguration
 {
   SEGAppboyIntegrationFactory *instance = [SEGAppboyIntegrationFactory instance];
-  [instance setIDFADelegate:idfaDelegate];
+  [instance setLocalConfiguration:localConfiguration];
   return instance;
 }
 
@@ -32,14 +31,14 @@ id<ABKIDFADelegate> _idfaDelegate;
   return self;
 }
 
-- (void)setIDFADelegate:(id<ABKIDFADelegate>)idfaDelegate
+- (void)setLocalConfiguration:(AppBoyConfiguration *)localConfiguration
 {
-  _idfaDelegate = idfaDelegate;
+  _localConfiguration = localConfiguration;
 }
 
 - (id<SEGIntegration>)createWithSettings:(NSDictionary *)settings forAnalytics:(SEGAnalytics *)analytics
 {
-  return [[SEGAppboyIntegration alloc] initWithSettings:settings idfaDelegate:_idfaDelegate];
+  return [[SEGAppboyIntegration alloc] initWithSettings:settings localConfiguration:_localConfiguration];
 }
 
 - (NSString *)key

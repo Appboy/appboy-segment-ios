@@ -27,10 +27,10 @@
 
 - (id)initWithSettings:(NSDictionary *)settings
 {
-  return [[SEGAppboyIntegration alloc] initWithSettings:settings idfaDelegate:nil];
+  return [[SEGAppboyIntegration alloc] initWithSettings:settings localConfiguration:nil];
 }
 
-- (id)initWithSettings:(NSDictionary *)settings idfaDelegate:(id<ABKIDFADelegate>)idfaDelegate
+- (id)initWithSettings:(NSDictionary *)settings localConfiguration:(AppBoyConfiguration *)localConfiguration
 {
   if (self = [super init]) {
     self.settings = settings;
@@ -44,9 +44,11 @@
     if (customEndpoint && [customEndpoint length] != 0) {
       appboyOptions[ABKEndpointKey] = customEndpoint;
     }
-
-    if (idfaDelegate) {
-      appboyOptions[ABKIDFADelegateKey] = idfaDelegate;
+    
+    if (localConfiguration) {
+      [localConfiguration enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        appboyOptions[key] = obj;
+      }];
     }
     
     if ([NSThread isMainThread]) {
