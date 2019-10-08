@@ -8,67 +8,57 @@
 @implementation AppboyLocalConfigurationKey
 
 
-+ (instancetype)requestProcessingPolicyOptionKey
++ (instancetype _Nonnull)requestProcessingPolicyOptionKey
 {
     return (AppboyLocalConfigurationKey *)ABKRequestProcessingPolicyOptionKey;
 }
 
-+ (instancetype)flushIntervalOptionKey
++ (instancetype _Nonnull)flushIntervalOptionKey
 {
     return (AppboyLocalConfigurationKey *)ABKFlushIntervalOptionKey;
 }
 
-+ (instancetype)enableAutomaticLocationCollectionKey
++ (instancetype _Nonnull)enableAutomaticLocationCollectionKey
 {
     return (AppboyLocalConfigurationKey *)ABKEnableAutomaticLocationCollectionKey;
 }
 
-+ (instancetype)enableGeofencesKey
++ (instancetype _Nonnull)enableGeofencesKey
 {
     return (AppboyLocalConfigurationKey *)ABKEnableGeofencesKey;
 }
 
-+ (instancetype)idfaDelegateKey
++ (instancetype _Nonnull)idfaDelegateKey
 {
     return (AppboyLocalConfigurationKey *)ABKIDFADelegateKey;
 }
 
-+ (instancetype)endpointKey
-{
-    return (AppboyLocalConfigurationKey *)ABKEndpointKey;
-}
-
-+ (instancetype)URLDelegateKey
++ (instancetype _Nonnull)URLDelegateKey
 {
     return (AppboyLocalConfigurationKey *)ABKURLDelegateKey;
 }
 
-+ (instancetype)inAppMessageControllerDelegateKey
++ (instancetype _Nonnull)inAppMessageControllerDelegateKey
 {
     return (AppboyLocalConfigurationKey *)ABKInAppMessageControllerDelegateKey;
 }
 
-+ (instancetype)sessionTimeoutKey
++ (instancetype _Nonnull)sessionTimeoutKey
 {
     return (AppboyLocalConfigurationKey *)ABKSessionTimeoutKey;
 }
 
-+ (instancetype)minimumTriggerTimeIntervalKey
++ (instancetype _Nonnull)minimumTriggerTimeIntervalKey
 {
     return (AppboyLocalConfigurationKey *)ABKMinimumTriggerTimeIntervalKey;
 }
 
-+ (instancetype)SDKFlavorKey
-{
-    return (AppboyLocalConfigurationKey *)ABKSDKFlavorKey;
-}
-
-+ (instancetype)deviceWhitelistKey
++ (instancetype _Nonnull)deviceWhitelistKey
 {
     return (AppboyLocalConfigurationKey *)ABKDeviceWhitelistKey;
 }
 
-+ (instancetype)pushStoryAppGroupKey
++ (instancetype _Nonnull)pushStoryAppGroupKey
 {
     return (AppboyLocalConfigurationKey *)ABKPushStoryAppGroupKey;
 }
