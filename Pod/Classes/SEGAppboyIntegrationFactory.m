@@ -6,7 +6,7 @@
 
 @implementation SEGAppboyIntegrationFactory
 
-NSDictionary *_localConfiguration;
+AppBoyConfiguration *_localConfiguration;
 
 + (instancetype)instance
 {
