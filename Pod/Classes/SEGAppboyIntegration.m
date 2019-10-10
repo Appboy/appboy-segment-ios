@@ -30,7 +30,7 @@
   return [[SEGAppboyIntegration alloc] initWithSettings:settings localConfiguration:nil];
 }
 
-- (id)initWithSettings:(NSDictionary *)settings localConfiguration:(AppBoyConfiguration *)localConfiguration
+- (id)initWithSettings:(NSDictionary *)settings localConfiguration:(AppBoyLocalConfiguration *)localConfiguration
 {
   if (self = [super init]) {
     self.settings = settings;
@@ -47,7 +47,8 @@
     
     if (localConfiguration) {
       [localConfiguration enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        appboyOptions[key] = obj;
+        NSString *keyString = [key stringValue];
+        appboyOptions[keyString] = obj;
       }];
     }
     

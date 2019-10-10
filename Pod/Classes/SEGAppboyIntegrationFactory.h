@@ -6,7 +6,7 @@
 @interface SEGAppboyIntegrationFactory : NSObject<SEGIntegrationFactory>
 
 + (instancetype)instance;
-+ (instancetype)withLocalConfiguration:(AppBoyConfiguration *)localConfiguration;
++ (instancetype)withLocalConfiguration:(AppBoyLocalConfiguration *)localConfiguration;
 
 - (void)saveLaunchOptions:(NSDictionary *)launchOptions;
 - (void)saveRemoteNotification:(NSDictionary *)userInfo;

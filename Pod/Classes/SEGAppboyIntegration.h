@@ -1,14 +1,14 @@
 #import <Foundation/Foundation.h>
 #import <Analytics/SEGIntegration.h>
-#import "AppboyLocalConfigurationKey.h"
+#import "AppboyLocalConfigurationProperty.h"
 
-typedef NSDictionary<AppboyLocalConfigurationKey *, id> AppBoyConfiguration;
+typedef NSDictionary<AppboyLocalConfigurationProperty *, id> AppBoyLocalConfiguration;
 
 @interface SEGAppboyIntegration : NSObject<SEGIntegration>
 
 @property(nonatomic, strong) NSDictionary *settings;
 
 - (id)initWithSettings:(NSDictionary *)settings;
-- (id)initWithSettings:(NSDictionary *)settings localConfiguration:(AppBoyConfiguration *)localConfiguration;
+- (id)initWithSettings:(NSDictionary *)settings localConfiguration:(AppBoyLocalConfiguration *)localConfiguration;
 
 @end

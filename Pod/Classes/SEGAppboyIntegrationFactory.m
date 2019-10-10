@@ -6,7 +6,7 @@
 
 @implementation SEGAppboyIntegrationFactory
 
-AppBoyConfiguration *_localConfiguration;
+AppBoyLocalConfiguration *_localConfiguration;
 
 + (instancetype)instance
 {
@@ -18,7 +18,7 @@ AppBoyConfiguration *_localConfiguration;
   return sharedInstance;
 }
 
-+ (instancetype)withLocalConfiguration:(AppBoyConfiguration *)localConfiguration
++ (instancetype)withLocalConfiguration:(AppBoyLocalConfiguration *)localConfiguration
 {
   SEGAppboyIntegrationFactory *instance = [SEGAppboyIntegrationFactory instance];
   [instance setLocalConfiguration:localConfiguration];
@@ -31,7 +31,7 @@ AppBoyConfiguration *_localConfiguration;
   return self;
 }
 
-- (void)setLocalConfiguration:(AppBoyConfiguration *)localConfiguration
+- (void)setLocalConfiguration:(AppBoyLocalConfiguration *)localConfiguration
 {
   _localConfiguration = localConfiguration;
 }
