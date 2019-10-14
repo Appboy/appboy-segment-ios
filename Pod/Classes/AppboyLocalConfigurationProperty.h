@@ -1,15 +1,15 @@
 typedef NS_ENUM(NSUInteger, AppboyLocalConfigurationKey){
-    requestProcessingPolicyOption,
-    flushIntervalOption,
-    enableAutomaticLocationCollection,
-    enableGeofences,
-    idfaDelegate,
-    uRLDelegate,
-    inAppMessageControllerDelegate,
-    sessionTimeout,
-    minimumTriggerTimeInterval,
-    deviceWhitelist,
-    pushStoryAppGroup
+    RequestProcessingPolicyOption,
+    FlushIntervalOption,
+    EnableAutomaticLocationCollection,
+    EnableGeofences,
+    IDFADelegate,
+    URLDelegate,
+    InAppMessageControllerDelegate,
+    SessionTimeout,
+    MinimumTriggerTimeInterval,
+    DeviceWhitelist,
+    PushStoryAppGroup
 };
 
 @interface AppboyLocalConfigurationProperty: NSObject <NSCopying>
@@ -18,3 +18,4 @@ typedef NS_ENUM(NSUInteger, AppboyLocalConfigurationKey){
 - (NSString *)stringValue;
 
 @end
+ 

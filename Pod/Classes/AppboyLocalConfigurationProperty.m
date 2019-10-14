@@ -27,27 +27,27 @@ AppboyLocalConfigurationKey _key;
 {
     switch (_key)
     {
-        case requestProcessingPolicyOption:
+        case RequestProcessingPolicyOption:
             return ABKRequestProcessingPolicyOptionKey;
-        case flushIntervalOption:
+        case FlushIntervalOption:
             return ABKFlushIntervalOptionKey;
-        case enableAutomaticLocationCollection:
+        case EnableAutomaticLocationCollection:
             return ABKEnableAutomaticLocationCollectionKey;
-        case enableGeofences:
+        case EnableGeofences:
             return ABKEnableGeofencesKey;
-        case idfaDelegate:
+        case IDFADelegate:
             return ABKIDFADelegateKey;
-        case uRLDelegate:
+        case URLDelegate:
             return ABKURLDelegateKey;
-        case inAppMessageControllerDelegate:
+        case InAppMessageControllerDelegate:
             return ABKInAppMessageControllerDelegateKey;
-        case sessionTimeout:
+        case SessionTimeout:
             return ABKSessionTimeoutKey;
-        case minimumTriggerTimeInterval:
+        case MinimumTriggerTimeInterval:
             return ABKMinimumTriggerTimeIntervalKey;
-        case deviceWhitelist:
+        case DeviceWhitelist:
             return ABKDeviceWhitelistKey;
-        case pushStoryAppGroup:
+        case PushStoryAppGroup:
             return ABKPushStoryAppGroupKey;
     }
 }
