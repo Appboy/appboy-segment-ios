@@ -1,6 +1,5 @@
 #import <Foundation/Foundation.h>
 #import <Analytics/SEGIntegrationFactory.h>
-#import <Appboy_iOS_SDK/ABKIDFADelegate.h>
 #import "SEGAppboyIntegration.h"
 
 @interface SEGAppboyIntegrationFactory : NSObject<SEGIntegrationFactory>
