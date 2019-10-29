@@ -17,6 +17,12 @@ it, simply add the following line to your `Podfile`:
 pod "Segment-Appboy"
 ```
 
+If you would like to use the `Appboy-iOS-SDK/Core` subspec instead of the full `Appboy-iOS-SDK` pod, edit your `Podfile` entry to:
+
+```ruby
+pod "Segment-Appboy/Core"
+```
+
 ## Usage
 
 After adding the dependency, you must register the integration with our SDK. To do this, import the Braze integration in your AppDelegate:

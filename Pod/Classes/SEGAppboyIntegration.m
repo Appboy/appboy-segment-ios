@@ -10,7 +10,6 @@
 #endif
 #import <Analytics/SEGAnalyticsUtils.h>
 #import "SEGAppboyIntegrationFactory.h"
-#import "SEGAppboyIntegrationEndpointDelegate.h"
 #import "SEGAppboyIntegrationOptions.h"
 #import "SEGAppboyAdditions.h"
 
@@ -55,9 +54,7 @@ static NSString *UserDefaultsDomain = @"com.appboy.segment.userTraits";
     NSMutableDictionary *appboyOptions = [@{ABKSDKFlavorKey : @(SEGMENT)} mutableCopy];
     NSString *customEndpoint = self.settings[@"customEndpoint"];
     if (customEndpoint && [customEndpoint length] != 0) {
-      SEGAppboyIntegrationEndpointDelegate *endpointDelegate =
-        [[SEGAppboyIntegrationEndpointDelegate alloc] initWithCustomEndpoint:customEndpoint];
-      appboyOptions[ABKAppboyEndpointDelegateKey] = endpointDelegate;
+      appboyOptions[ABKEndpointKey] = customEndpoint;
     }
 
     if ([NSThread isMainThread]) {
@@ -268,8 +265,8 @@ static NSString *UserDefaultsDomain = @"com.appboy.segment.userTraits";
 // Appboy uses this to send push messages to the device, so forward it to Appboy.
 - (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-  [[Appboy sharedInstance] registerPushToken:[NSString stringWithFormat:@"%@", deviceToken]];
-  SEGLog(@"[[Appboy sharedInstance] registerPushToken:]");
+  [[Appboy sharedInstance] registerDeviceToken:deviceToken];
+  SEGLog(@"[[Appboy sharedInstance] registerDeviceToken:]");
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
