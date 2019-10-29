@@ -164,7 +164,7 @@ describe(@"SEGAppboyIntegration", ^{
       NSData *registerData = [[NSData alloc] init];
       id appboyMock = OCMClassMock([Appboy class]);
       OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
-      OCMExpect([appboyMock registerPushToken:[OCMArg any]]);
+      OCMExpect([appboyMock registerDeviceToken:[OCMArg any]]);
       SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
       [appboyIntegration registeredForRemoteNotificationsWithDeviceToken:registerData];
       OCMVerifyAllWithDelay(appboyMock, 2);
