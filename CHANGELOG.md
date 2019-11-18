@@ -1,4 +1,4 @@
-## 2.2.3
+## 2.3.0
 
 ##### Changed
 - Updated to [Braze iOS SDK 3.21.0](https://github.com/Appboy/appboy-ios-sdk/releases/tag/3.21.0).
