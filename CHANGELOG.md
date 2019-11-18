@@ -1,3 +1,8 @@
+## 2.2.3
+
+##### Changed
+- Updated to [Braze iOS SDK 3.21.0](https://github.com/Appboy/appboy-ios-sdk/releases/tag/3.21.0).
+
 ## 2.2.2
 
 **Important:** This patch updates the Braze iOS SDK Dependency from 3.20.1 to 3.20.2, which contains important bugfixes. Integrators should upgrade to this patch version. Please see the [Braze iOS SDK Changelog](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md) for more information.
