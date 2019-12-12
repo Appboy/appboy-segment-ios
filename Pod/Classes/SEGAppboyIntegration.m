@@ -163,6 +163,11 @@ static NSString *UserDefaultsDomain = @"com.appboy.segment.userTraits";
       SEGLog(@"Logged [Appboy sharedInstance].user.country");
     }
   }
+
+  if ([traits[@"avatar"] isKindOfClass:[NSString class]]) {
+    [Appboy sharedInstance].user.avatarImageURL = traits[@"avatar"];
+    SEGLog(@"Logged [Appboy sharedInstance].user.avatarImageURL");
+  }
   
   NSArray *appboyTraits = @[@"birthday", @"email", @"firstName", @"lastName",  @"gender", @"phone", @"address", @"anonymousID"];
   
