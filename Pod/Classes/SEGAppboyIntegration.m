@@ -266,10 +266,12 @@
     // The existence of a push payload saved on the factory indicates that the push was received when
     // Appboy was not initialized yet, and thus the push was received in the inactive state.
     if ([[Appboy sharedInstance] respondsToSelector:@selector(handleRemotePushNotification:withIdentifier:completionHandler:applicationState:)]) {
-      [[Appboy sharedInstance] handleRemotePushNotification:pushDictionary
-                                             withIdentifier:identifier
-                                          completionHandler:nil
-                                           applicationState:UIApplicationStateInactive];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [[Appboy sharedInstance] handleRemotePushNotification:pushDictionary
+                                               withIdentifier:identifier
+                                            completionHandler:nil
+                                             applicationState:UIApplicationStateInactive];
+      });
     }
     [[SEGAppboyIntegrationFactory instance] saveRemoteNotification:nil];
     return YES;
