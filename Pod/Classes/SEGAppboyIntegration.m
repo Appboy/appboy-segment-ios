@@ -12,6 +12,7 @@
 #import "SEGAppboyIntegrationFactory.h"
 
 @interface Appboy(Segment)
+
 - (void) handleRemotePushNotification:(NSDictionary *)notification
                        withIdentifier:(NSString *)identifier
                     completionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
@@ -185,7 +186,7 @@
   }
   
   NSDecimalNumber *revenue = [SEGAppboyIntegration extractRevenue:payload.properties withKey:@"revenue"];
-  if (revenue) {
+  if (revenue || [payload.event isEqualToString:@"Order Completed"]) {
     NSString *currency = @"USD";  // Make USD as the default currency.
     if ([payload.properties[@"currency"] isKindOfClass:[NSString class]] &&
         [(NSString *)payload.properties[@"currency"] length] == 3) {  // Currency should be an ISO 4217 currency code.
@@ -196,7 +197,26 @@
       NSMutableDictionary *appboyProperties = [NSMutableDictionary dictionaryWithDictionary:payload.properties];
       appboyProperties[@"currency"] = nil;
       appboyProperties[@"revenue"] = nil;
-      [[Appboy sharedInstance] logPurchase:payload.event inCurrency:currency atPrice:revenue withQuantity:1 andProperties:appboyProperties];
+      
+      if (appboyProperties[@"products"]) {
+        NSArray *products = [appboyProperties[@"products"] copy];
+        appboyProperties[@"products"] = nil;
+
+        for (NSDictionary *product in products) {
+          NSMutableDictionary *productDictionary = [product mutableCopy];
+          NSString *productId = productDictionary[@"productId"];
+          NSDecimalNumber *productRevenue = [SEGAppboyIntegration extractRevenue:productDictionary withKey:@"price"];
+          NSUInteger productQuantity = [productDictionary[@"quantity"] unsignedIntegerValue];
+          productDictionary[@"productId"] = nil;
+          productDictionary[@"price"] = nil;
+          productDictionary[@"quantity"] = nil;
+          NSMutableDictionary *productProperties = [appboyProperties mutableCopy];
+          [productProperties addEntriesFromDictionary:productDictionary];
+          [[Appboy sharedInstance] logPurchase:productId inCurrency:currency atPrice:productRevenue withQuantity:productQuantity andProperties:productProperties];
+        }
+      } else {
+        [[Appboy sharedInstance] logPurchase:payload.event inCurrency:currency atPrice:revenue withQuantity:1 andProperties:appboyProperties];
+      }
     } else {
       [[Appboy sharedInstance] logPurchase:payload.event inCurrency:currency atPrice:revenue withQuantity:1];
     }
@@ -241,6 +261,7 @@
     if (![[UIApplication sharedApplication].delegate respondsToSelector:@selector(application:didReceiveRemoteNotification:fetchCompletionHandler:)]) {
       [self logPushIfComesInBeforeAppboyInitializedWithIdentifier:nil];
     }
+    [[SEGAppboyIntegrationFactory instance].appboyHelper applicationDidFinishLaunching];
   });
 }
 
@@ -260,7 +281,7 @@
   SEGLog(@"[[Appboy sharedInstance] getActionWithIdentifier: forRemoteNotification: completionHandler:]");
 }
 
-- (BOOL) logPushIfComesInBeforeAppboyInitializedWithIdentifier:(NSString *)identifier {
+- (BOOL)logPushIfComesInBeforeAppboyInitializedWithIdentifier:(NSString *)identifier {
   NSDictionary *pushDictionary = [[SEGAppboyIntegrationFactory instance] getPushPayload];
   if (pushDictionary != nil && pushDictionary.count > 0) {
     // The existence of a push payload saved on the factory indicates that the push was received when
@@ -276,4 +297,5 @@
   }
   return NO;
 }
+
 @end
