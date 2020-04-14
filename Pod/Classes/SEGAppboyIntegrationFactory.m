@@ -1,9 +1,17 @@
 #import "SEGAppboyIntegrationFactory.h"
 #import "SEGAppboyIntegration.h"
 #import "SEGAppboyIntegrationOptions.h"
+#if defined(__has_include) && __has_include(<Appboy_iOS_SDK/AppboyKit.h>)
+#import <Appboy_iOS_SDK/AppboyKit.h>
+#else
+#import "Appboy-iOS-SDK/AppboyKit.h"
+#endif
 
 @interface SEGAppboyIntegrationFactory ()
+
 @property NSDictionary *savedPushPayload;
+@property (readwrite) SEGAppboyHelper *appboyHelper;
+
 @end
 
 @implementation SEGAppboyIntegrationFactory
@@ -18,9 +26,10 @@
   return sharedInstance;
 }
 
-- (id)init
-{
-  self = [super init];
+- (id)init {
+  if (self = [super init]) {
+    self.appboyHelper = [[SEGAppboyHelper alloc] init];
+  }
   return self;
 }
 
@@ -34,7 +43,7 @@
   return @"Appboy";
 }
 
-- (void) saveLaunchOptions:(NSDictionary *)launchOptions {
+- (void)saveLaunchOptions:(NSDictionary *)launchOptions {
   NSDictionary *pushPayLoad = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
   if (pushPayLoad != nil && pushPayLoad.count > 0) {
     self.savedPushPayload = [pushPayLoad copy];
@@ -48,4 +57,5 @@
 - (NSDictionary *) getPushPayload {
   return self.savedPushPayload;
 }
+
 @end
