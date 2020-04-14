@@ -1,3 +1,27 @@
+## 3.0.0
+
+##### Breaking
+- Log separate purchases for each product in the `products` array in a `track` call.
+  - In the past we used the event name as the product ID.
+  - Now if a `track` call has the event name `Order Completed` or the key `revenue` included in `properties` and also has a `products` array, we will log each object in the array as a separate purchase using `productId` as the product ID. `price` and `quantity` will be read from the individual array if available. All non-Braze recognized fields from the high level `properties` and each individual product will be combined and sent as event properties.
+  - If there is no `products` array we will continue using the event name as the product ID if the key `revenue` is included in `properties`.
+  
+##### Added
+- Added a push delegate method for apps using the `UserNotification` framework.
+  - Follow our [documentation](https://www.braze.com/docs/developer_guide/platform_integration_guides/ios/push_notifications/integration/#using-usernotification-framework-ios-10) for registering for push notifications using the `UserNotification` framework.
+  - In `userNotificationCenter:didReceiveNotificationResponse:withCompletionHandler` add the following block of code:
+  ```
+  if ([Appboy sharedInstance] == nil) {
+   [[SEGAppboyIntegrationFactory instance].appboyHelper saveUserNotificationCenter:center
+                                                              notificationResponse:response];
+  }
+  [[SEGAppboyIntegrationFactory instance].appboyHelper userNotificationCenter:center
+                                                 receivedNotificationResponse:response];
+  if (completionHandler) {
+   completionHandler();
+  }
+  ```
+
 ## 2.3.0
 
 ##### Changed

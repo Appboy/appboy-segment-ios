@@ -75,6 +75,32 @@
                              properties:@{ @"currency": @"CNY", @"revenue" : numberRevenue, @"property" : @"milky white rabbit"}];
   [[SEGAnalytics sharedAnalytics] track:@"Purchase"
                              properties:@{ @"currency": @"CNY", @"revenue" : stringRevenue, @"property" : @"myProperty"}];
+  [[SEGAnalytics sharedAnalytics] track:@"Order Completed"
+                             properties:@{@"currency": @"CNY",
+                                          @"revenue" : numberRevenue,
+                                          @"products" : @[@{@"productId" : @"cookies",
+                                                            @"price" : @"72.3",
+                                                            @"quantity" : @(29),
+                                                            @"cookieType" : @"chocolateChip"
+                                                        },
+                                                        @{@"productId" : @"muffins",
+                                                          @"price" : @"24.2",
+                                                          @"quantity" : @(17),
+                                                          @"muffinType" : @"blueberry"
+                                                        }],
+                                          @"purchaseType" : @"productsArray"
+                             }];
+  [[SEGAnalytics sharedAnalytics] track:@"Order Completed"
+                             properties:@{@"currency" : @"USD",
+                                          @"products" : @[@{@"productId" : @"phone",
+                                                            @"price" : @"199.99",
+                                                            @"quantity" : @(2),
+                                                            @"phoneType" : @"iPhoneX"},
+                                                          @{@"productId" : @"tablet",
+                                                            @"price" : @"149.99",
+                                                            @"quantity" : @(3),
+                                                            @"tabletType" : @"iPad"}],
+                                          @"store" : @"appleStore"}];
   [[SEGAnalytics sharedAnalytics] track:@"Install Attributed"
                              properties: @{@"provider" : @"Tune/Kochava/Branch",
                                            @"campaign" : @{@"source" : @"Network/FB/AdWords/MoPub/Source",

@@ -122,6 +122,36 @@ describe(@"SEGAppboyIntegration", ^{
       [appboyIntegration track:trackPayload];
       OCMVerifyAllWithDelay(appboyMock, 2);
     });
+  
+    it(@"calls logPurchase for each product in the products array", ^{
+      NSDictionary *settings = @{@"apiKey":@"foo"};
+      id appboyMock = OCMClassMock([Appboy class]);
+      OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
+      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil withAppboyOptions:[OCMArg any]]);
+      OCMExpect(([appboyMock logPurchase:@"product1" inCurrency:@"USD" atPrice:[NSDecimalNumber decimalNumberWithString:@"72.3"]
+                            withQuantity:29 andProperties:@{@"extraProperty" : @"extraValue",
+                                                            @"productProperty" : @"productValue"
+                            }]));
+      
+      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
+      
+      NSDictionary *properties = @{
+                                   @"currency" : @"USD",
+                                   @"extraProperty" : @"extraValue",
+                                   @"products" : @[@{@"productId" : @"product1",
+                                                     @"price" : @"72.3",
+                                                     @"quantity" : @(29),
+                                                     @"productProperty" : @"productValue"
+                                                  }]
+                                   };
+      
+      SEGTrackPayload *trackPayload = [[SEGTrackPayload alloc] initWithEvent:@"Order Completed"
+                                                                  properties:properties
+                                                                     context:nil
+                                                                integrations:nil];
+      [appboyIntegration track:trackPayload];
+      OCMVerifyAllWithDelay(appboyMock, 2);
+    });
     
     it(@"logs an event if there isn't revenue", ^{
       NSDictionary *settings = @{@"apiKey":@"foo"};
@@ -144,7 +174,6 @@ describe(@"SEGAppboyIntegration", ^{
       OCMVerifyAllWithDelay(appboyMock, 2);
     });
   });
-  
   
   describe(@"flush", ^{
     it(@"calls [[Appboy sharedInstance] flushDataAndProcessRequestQueue]", ^{
