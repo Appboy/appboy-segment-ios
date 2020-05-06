@@ -23,6 +23,12 @@ If you would like to use the `Appboy-iOS-SDK/Core` subspec instead of the full `
 pod "Segment-Appboy/Core"
 ```
 
+If you would like to use the `Appboy-iOS-SDK/InAppMessage` subspec instead of the full `Appboy-iOS-SDK` pod, edit your `Podfile` entry to:
+
+```ruby
+pod "Segment-Appboy/InAppMessage"
+```
+
 ## Usage
 
 After adding the dependency, you must register the integration with our SDK. To do this, import the Braze integration in your AppDelegate:
