@@ -276,7 +276,9 @@
 
 - (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo {
   if (![self logPushIfComesInBeforeAppboyInitializedWithIdentifier:identifier]) {
-    [[Appboy sharedInstance] getActionWithIdentifier:identifier forRemoteNotification:userInfo completionHandler:nil];
+      dispatch_async(dispatch_get_main_queue(), ^{
+          [[Appboy sharedInstance] getActionWithIdentifier:identifier forRemoteNotification:userInfo completionHandler:nil];
+      });
   }
   SEGLog(@"[[Appboy sharedInstance] getActionWithIdentifier: forRemoteNotification: completionHandler:]");
 }
