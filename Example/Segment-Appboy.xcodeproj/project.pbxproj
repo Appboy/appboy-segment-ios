@@ -22,6 +22,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* SEGAppboyIntegrationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* SEGAppboyIntegrationTest.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		B2946CB62460561E00829FB4 /* SEGAppboyIntegrationFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B2946CB52460561E00829FB4 /* SEGAppboyIntegrationFactoryTest.m */; };
 		D3C0897B71D57C614E791C33 /* Pods_Segment_Appboy_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F373C65B14EBD0A693B5E1B9 /* Pods_Segment_Appboy_Tests.framework */; };
 		E34AFDEF1C0E7B3B0069EFC5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E34AFDEE1C0E7B3B0069EFC5 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,7 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A3F2E40E91ECF99EB610E19D /* Pods-Segment-Appboy_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-Appboy_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Segment-Appboy_Example/Pods-Segment-Appboy_Example.release.xcconfig"; sourceTree = "<group>"; };
+		B2946CB52460561E00829FB4 /* SEGAppboyIntegrationFactoryTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGAppboyIntegrationFactoryTest.m; sourceTree = "<group>"; };
 		C0D0DBD41D906358006A4A0B /* Segment-Appboy_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Segment-Appboy_Example.entitlements"; sourceTree = "<group>"; };
 		E10DD4E3EA59929200EB78C1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E34AFDEE1C0E7B3B0069EFC5 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				6003F5BB195388D20070C39A /* SEGAppboyIntegrationTest.m */,
+				B2946CB52460561E00829FB4 /* SEGAppboyIntegrationFactoryTest.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
 			path = Tests;
@@ -446,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2946CB62460561E00829FB4 /* SEGAppboyIntegrationFactoryTest.m in Sources */,
 				6003F5BC195388D20070C39A /* SEGAppboyIntegrationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

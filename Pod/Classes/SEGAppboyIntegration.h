@@ -3,8 +3,9 @@
 
 @interface SEGAppboyIntegration : NSObject<SEGIntegration>
 
-@property(nonatomic, strong) NSDictionary *settings;
+@property(nonatomic, strong, nullable) NSDictionary *settings;
 
-- (id)initWithSettings:(NSDictionary *)settings;
+- (nullable id)initWithSettings:(nonnull NSDictionary *)settings;
+- (nullable id)initWithSettings:(nonnull NSDictionary *)settings appboyOptions:(nullable NSDictionary *)appboyOptions;
 
 @end

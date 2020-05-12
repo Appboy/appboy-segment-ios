@@ -1,3 +1,17 @@
+## 3.1.0
+
+#### Added
+- Added ability to set `appboyOptions` on the `SEGAppboyIntegrationFactory` for example:
+```
+[SEGAppboyIntegrationFactory instance].appboyOptions = @{ABKMinimumTriggerTimeIntervalKey: @1}; 
+```
+The full list of options are documented in [Appboy.h](https://github.com/Appboy/appboy-ios-sdk/blob/master/AppboyKit/headers/AppboyKitLibrary/Appboy.h#L35). Shout out to @maloneranger for the feature suggestion and PR. 
+- Added the ability to import one of our UI subspecs instead of the full SDK. To do this, update your `Podfile` to use `Segment-Appboy/InAppMessage`, `Segment-Appboy/NewsFeed`, or `Segment-Appboy/ContentCards` instead of `Segment-Appboy`. `Segment-Appboy` will continue to use the full SDK by default. Thanks @khaptonstall!
+
+#### Changed
+- Updated to [Braze iOS SDK 3.22.0](https://github.com/Appboy/appboy-ios-sdk/releases/tag/3.22.0).
+- Updated code to call all Braze iOS SDK push handling methods that call UI APIs from the main thread. Thanks @gilserrap and @khaptonstall!
+
 ## 3.0.0
 
 ##### Breaking

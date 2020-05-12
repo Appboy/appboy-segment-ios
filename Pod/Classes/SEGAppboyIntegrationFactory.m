@@ -1,5 +1,4 @@
 #import "SEGAppboyIntegrationFactory.h"
-#import "SEGAppboyIntegration.h"
 #if defined(__has_include) && __has_include(<Appboy_iOS_SDK/AppboyKit.h>)
 #import <Appboy_iOS_SDK/AppboyKit.h>
 #else
@@ -15,8 +14,7 @@
 
 @implementation SEGAppboyIntegrationFactory
 
-+ (instancetype)instance
-{
++ (instancetype)instance {
   static dispatch_once_t once;
   static SEGAppboyIntegrationFactory *sharedInstance;
   dispatch_once(&once, ^{
@@ -32,13 +30,11 @@
   return self;
 }
 
-- (id<SEGIntegration>)createWithSettings:(NSDictionary *)settings forAnalytics:(SEGAnalytics *)analytics
-{
-  return [[SEGAppboyIntegration alloc] initWithSettings:settings];
+- (id<SEGIntegration>)createWithSettings:(NSDictionary *)settings forAnalytics:(SEGAnalytics *)analytics {
+  return [[SEGAppboyIntegration alloc] initWithSettings:settings appboyOptions:self.appboyOptions];
 }
 
-- (NSString *)key
-{
+- (NSString *)key {
   return @"Appboy";
 }
 

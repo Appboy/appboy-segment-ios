@@ -28,6 +28,11 @@
 
 - (id)initWithSettings:(NSDictionary *)settings
 {
+  return [self initWithSettings:settings appboyOptions:nil];
+}
+
+- (id)initWithSettings:(NSDictionary *)settings appboyOptions:(NSDictionary *)appboyOptions
+{
   if (self = [super init]) {
     self.settings = settings;
     id appboyAPIKey = self.settings[@"apiKey"];
@@ -35,24 +40,30 @@
       return nil;
     }
     
-    NSMutableDictionary *appboyOptions = [@{ABKSDKFlavorKey : @(SEGMENT)} mutableCopy];
+    NSMutableDictionary *mergedAppboyOptions;
+    if (appboyOptions) {
+     mergedAppboyOptions = [appboyOptions mutableCopy];
+     mergedAppboyOptions[ABKSDKFlavorKey] = @(SEGMENT);
+    } else {
+      mergedAppboyOptions = [@{ABKSDKFlavorKey : @(SEGMENT)} mutableCopy];
+    }
     NSString *customEndpoint = self.settings[@"customEndpoint"];
     if (customEndpoint && [customEndpoint length] != 0) {
-      appboyOptions[ABKEndpointKey] = customEndpoint;
+      mergedAppboyOptions[ABKEndpointKey] = customEndpoint;
     }
     
     if ([NSThread isMainThread]) {
       [Appboy startWithApiKey:appboyAPIKey
                 inApplication:[UIApplication sharedApplication]
             withLaunchOptions:nil
-            withAppboyOptions:appboyOptions];
+            withAppboyOptions:mergedAppboyOptions];
       SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]");
     } else {
       dispatch_sync(dispatch_get_main_queue(), ^{
         [Appboy startWithApiKey:appboyAPIKey
                   inApplication:[UIApplication sharedApplication]
               withLaunchOptions:nil
-              withAppboyOptions:appboyOptions];
+              withAppboyOptions:mergedAppboyOptions];
         SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]");
       });
     }
@@ -276,7 +287,9 @@
 
 - (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo {
   if (![self logPushIfComesInBeforeAppboyInitializedWithIdentifier:identifier]) {
-    [[Appboy sharedInstance] getActionWithIdentifier:identifier forRemoteNotification:userInfo completionHandler:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      [[Appboy sharedInstance] getActionWithIdentifier:identifier forRemoteNotification:userInfo completionHandler:nil];
+    });
   }
   SEGLog(@"[[Appboy sharedInstance] getActionWithIdentifier: forRemoteNotification: completionHandler:]");
 }
@@ -287,10 +300,12 @@
     // The existence of a push payload saved on the factory indicates that the push was received when
     // Appboy was not initialized yet, and thus the push was received in the inactive state.
     if ([[Appboy sharedInstance] respondsToSelector:@selector(handleRemotePushNotification:withIdentifier:completionHandler:applicationState:)]) {
-      [[Appboy sharedInstance] handleRemotePushNotification:pushDictionary
-                                             withIdentifier:identifier
-                                          completionHandler:nil
-                                           applicationState:UIApplicationStateInactive];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [[Appboy sharedInstance] handleRemotePushNotification:pushDictionary
+                                               withIdentifier:identifier
+                                            completionHandler:nil
+                                             applicationState:UIApplicationStateInactive];
+      });
     }
     [[SEGAppboyIntegrationFactory instance] saveRemoteNotification:nil];
     return YES;
