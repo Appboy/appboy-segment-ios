@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-Appboy"
-  s.version          = "3.1.0"
+  s.version          = "3.1.1"
   s.summary          = "Braze Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '9.0'
   s.requires_arc = true
 
-  s.dependency 'Analytics', '~> 3.0'
+  s.dependency 'Analytics'
   s.default_subspec = 'Full-SDK'
 
   s.subspec 'Full-SDK' do |default|
