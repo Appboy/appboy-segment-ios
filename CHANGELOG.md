@@ -17,6 +17,9 @@ carthage update
 
 Follow the standard procedure to add the frameworks built/retrieved by Carthage to your project (see [Adding frameworks to an application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application))
 
+#### Changed
+- Updated to [Braze iOS SDK 3.24.1](https://github.com/Appboy/appboy-ios-sdk/releases/tag/3.24.1).
+
 ## 3.1.0
 
 #### Added
