@@ -1,3 +1,6 @@
+install! 'cocoapods',
+         :share_schemes_for_development_pods => true
+
 source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!

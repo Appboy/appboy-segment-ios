@@ -4,14 +4,17 @@ Braze iOS Segment SDK
 ==========
 
 [![Version](https://img.shields.io/cocoapods/v/Segment-Appboy.svg?style=flat)](http://cocoapods.org/pods/Segment-Appboy)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/Segment-Appboy.svg?style=flat)](http://cocoapods.org/pods/Segment-Appboy)
 
 Braze integration for analytics-ios.
 
 ## Installation
 
-Analytics is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your `Podfile`:
+Analytics is available through [CocoaPods](http://cocoapods.org) and [Carthage](https://github.com/Carthage/Carthage). 
+
+### Cocoapods
+To install the Braze integration through Cocoapods, simply add the following line to your `Podfile`:
 
 ```ruby
 pod "Segment-Appboy"
@@ -22,6 +25,23 @@ If you would like to use the `Appboy-iOS-SDK/Core` subspec instead of the full `
 ```ruby
 pod "Segment-Appboy/Core"
 ```
+
+### Carthage
+
+To install the Braze integration through Carthage, add the following lines to your `Cartfile`:
+
+```
+github "segmentio/analytics-ios"
+github "appboy/appboy-segment-ios"
+github "appboy/appboy-ios-sdk"
+```
+
+And run: 
+```sh
+carthage update
+```
+
+Follow the standard procedure to add the frameworks built/retrieved by Carthage to your project (see [Adding frameworks to an application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application))
 
 ## Usage
 

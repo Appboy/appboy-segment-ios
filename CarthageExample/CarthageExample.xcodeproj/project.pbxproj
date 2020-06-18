@@ -1,0 +1,402 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		701199942486D41400946DAA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 701199932486D41400946DAA /* AppDelegate.m */; };
+		701199972486D41400946DAA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 701199962486D41400946DAA /* SceneDelegate.m */; };
+		7011999A2486D41400946DAA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 701199992486D41400946DAA /* ViewController.m */; };
+		7011999D2486D41400946DAA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7011999B2486D41400946DAA /* Main.storyboard */; };
+		7011999F2486D41500946DAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7011999E2486D41500946DAA /* Assets.xcassets */; };
+		701199A22486D41500946DAA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 701199A02486D41500946DAA /* LaunchScreen.storyboard */; };
+		701199A52486D41500946DAA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 701199A42486D41500946DAA /* main.m */; };
+		701199B02486D53E00946DAA /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701199AC2486D53E00946DAA /* Analytics.framework */; };
+		701199B22486D53E00946DAA /* Segment_Appboy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701199AD2486D53E00946DAA /* Segment_Appboy.framework */; };
+		701199B42486D53F00946DAA /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701199AE2486D53E00946DAA /* SDWebImage.framework */; };
+		701199B62486D53F00946DAA /* Appboy_iOS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 701199AF2486D53E00946DAA /* Appboy_iOS_SDK.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7011998F2486D41400946DAA /* CarthageExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarthageExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		701199922486D41400946DAA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		701199932486D41400946DAA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		701199952486D41400946DAA /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		701199962486D41400946DAA /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		701199982486D41400946DAA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		701199992486D41400946DAA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		7011999C2486D41400946DAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7011999E2486D41500946DAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		701199A12486D41500946DAA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		701199A32486D41500946DAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		701199A42486D41500946DAA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		701199AC2486D53E00946DAA /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Analytics.framework; path = Carthage/Build/iOS/Analytics.framework; sourceTree = "<group>"; };
+		701199AD2486D53E00946DAA /* Segment_Appboy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Segment_Appboy.framework; path = Carthage/Build/iOS/Segment_Appboy.framework; sourceTree = "<group>"; };
+		701199AE2486D53E00946DAA /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
+		701199AF2486D53E00946DAA /* Appboy_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Appboy_iOS_SDK.framework; path = Carthage/Build/iOS/Appboy_iOS_SDK.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7011998C2486D41400946DAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				701199B02486D53E00946DAA /* Analytics.framework in Frameworks */,
+				701199B42486D53F00946DAA /* SDWebImage.framework in Frameworks */,
+				701199B62486D53F00946DAA /* Appboy_iOS_SDK.framework in Frameworks */,
+				701199B22486D53E00946DAA /* Segment_Appboy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		701199862486D41400946DAA = {
+			isa = PBXGroup;
+			children = (
+				701199912486D41400946DAA /* CarthageExample */,
+				701199902486D41400946DAA /* Products */,
+				701199AB2486D53E00946DAA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		701199902486D41400946DAA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7011998F2486D41400946DAA /* CarthageExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		701199912486D41400946DAA /* CarthageExample */ = {
+			isa = PBXGroup;
+			children = (
+				701199922486D41400946DAA /* AppDelegate.h */,
+				701199932486D41400946DAA /* AppDelegate.m */,
+				701199952486D41400946DAA /* SceneDelegate.h */,
+				701199962486D41400946DAA /* SceneDelegate.m */,
+				701199982486D41400946DAA /* ViewController.h */,
+				701199992486D41400946DAA /* ViewController.m */,
+				7011999B2486D41400946DAA /* Main.storyboard */,
+				7011999E2486D41500946DAA /* Assets.xcassets */,
+				701199A02486D41500946DAA /* LaunchScreen.storyboard */,
+				701199A32486D41500946DAA /* Info.plist */,
+				701199A42486D41500946DAA /* main.m */,
+			);
+			path = CarthageExample;
+			sourceTree = "<group>";
+		};
+		701199AB2486D53E00946DAA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				701199AC2486D53E00946DAA /* Analytics.framework */,
+				701199AF2486D53E00946DAA /* Appboy_iOS_SDK.framework */,
+				701199AE2486D53E00946DAA /* SDWebImage.framework */,
+				701199AD2486D53E00946DAA /* Segment_Appboy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7011998E2486D41400946DAA /* CarthageExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 701199A82486D41500946DAA /* Build configuration list for PBXNativeTarget "CarthageExample" */;
+			buildPhases = (
+				7011998B2486D41400946DAA /* Sources */,
+				7011998C2486D41400946DAA /* Frameworks */,
+				7011998D2486D41400946DAA /* Resources */,
+				701199B92486D56000946DAA /* Carthage */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CarthageExample;
+			productName = CarthageExample;
+			productReference = 7011998F2486D41400946DAA /* CarthageExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		701199872486D41400946DAA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = Appboy;
+				TargetAttributes = {
+					7011998E2486D41400946DAA = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = 7011998A2486D41400946DAA /* Build configuration list for PBXProject "CarthageExample" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 701199862486D41400946DAA;
+			productRefGroup = 701199902486D41400946DAA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7011998E2486D41400946DAA /* CarthageExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7011998D2486D41400946DAA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				701199A22486D41500946DAA /* LaunchScreen.storyboard in Resources */,
+				7011999F2486D41500946DAA /* Assets.xcassets in Resources */,
+				7011999D2486D41400946DAA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		701199B92486D56000946DAA /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/input.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = Carthage;
+			outputFileListPaths = (
+				"$(SRCROOT)/output.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7011998B2486D41400946DAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7011999A2486D41400946DAA /* ViewController.m in Sources */,
+				701199942486D41400946DAA /* AppDelegate.m in Sources */,
+				701199A52486D41500946DAA /* main.m in Sources */,
+				701199972486D41400946DAA /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7011999B2486D41400946DAA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7011999C2486D41400946DAA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		701199A02486D41500946DAA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				701199A12486D41500946DAA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		701199A62486D41500946DAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		701199A72486D41500946DAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		701199A92486D41500946DAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5GLZKGNWQ3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = CarthageExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appboy.CarthageExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		701199AA2486D41500946DAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5GLZKGNWQ3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = CarthageExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.appboy.CarthageExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7011998A2486D41400946DAA /* Build configuration list for PBXProject "CarthageExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				701199A62486D41500946DAA /* Debug */,
+				701199A72486D41500946DAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		701199A82486D41500946DAA /* Build configuration list for PBXNativeTarget "CarthageExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				701199A92486D41500946DAA /* Debug */,
+				701199AA2486D41500946DAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 701199872486D41400946DAA /* Project object */;
+}

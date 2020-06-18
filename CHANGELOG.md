@@ -1,3 +1,22 @@
+## 3.2.0
+
+#### Added
+- Added Carthage support
+
+To install the Braze integration through Carthage, add the following lines to your `Cartfile`:
+```
+github "segmentio/analytics-ios"
+github "appboy/appboy-segment-ios"
+github "appboy/appboy-ios-sdk"
+```
+
+And run: 
+```sh
+carthage update
+```
+
+Follow the standard procedure to add the frameworks built/retrieved by Carthage to your project (see [Adding frameworks to an application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application))
+
 ## 3.1.0
 
 #### Added

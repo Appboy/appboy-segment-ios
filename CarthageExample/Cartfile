@@ -1,0 +1,3 @@
+github "segmentio/analytics-ios"
+github "appboy/appboy-segment-ios"
+github "appboy/appboy-ios-sdk"

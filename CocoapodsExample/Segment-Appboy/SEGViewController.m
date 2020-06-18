@@ -2,6 +2,7 @@
 #import "SEGAnalytics.h"
 #import "AppboyKit.h"
 #import "ABKNewsFeedViewController.h"
+#import "ABKContentCardsViewController.h"
 
 @interface SEGViewController ()
 
@@ -12,6 +13,11 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+  [self contentCardsUpdated:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(contentCardsUpdated:)
+                                               name:ABKContentCardsProcessedNotification
+                                             object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -117,4 +123,30 @@
     [self presentViewController:newsFeed animated:YES completion:nil];
   }
 }
+
+- (IBAction)contentCardsButtonPress:(id)sender {
+  if ([Appboy sharedInstance] != nil) {
+    if (self.modalOrNavigationControl.selectedSegmentIndex == 0) {
+      ABKContentCardsViewController *contentCardsVC = [ABKContentCardsViewController new];
+      contentCardsVC.contentCardsViewController.navigationItem.title = @"Modal Cards";
+      [self.navigationController presentViewController:contentCardsVC animated:YES completion:nil];
+    } else {
+      ABKContentCardsTableViewController *contentCards = [ABKContentCardsTableViewController getNavigationContentCardsViewController];
+      contentCards.navigationItem.title = @"Navigation Cards";
+      [self.navigationController pushViewController:contentCards animated:YES];
+    }
+  }
+}
+
+- (void)contentCardsUpdated:(NSNotification *)notification {
+  if ([Appboy sharedInstance] != nil) {
+    self.unreadContentCardsLabel.text = [NSString stringWithFormat:@"Unread Content Cards: %ld / %ld",
+                                          (long)[Appboy sharedInstance].contentCardsController.unviewedContentCardCount,
+                                          (long)[Appboy sharedInstance].contentCardsController.contentCardCount];
+    [self.view setNeedsDisplay];
+  } else {
+    self.unreadContentCardsLabel.text = [NSString stringWithFormat:@"Unread Content Cards: 0 / 0"];
+  }
+}
+
 @end
