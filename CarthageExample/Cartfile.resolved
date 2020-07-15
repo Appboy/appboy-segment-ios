@@ -1,3 +1,3 @@
-github "appboy/appboy-ios-sdk" "3.23.0"
-github "appboy/appboy-segment-ios" "3.1.0"
-github "segmentio/analytics-ios" "3.8.2"
+github "appboy/appboy-ios-sdk" "3.25.0"
+github "appboy/appboy-segment-ios" "3.2.0"
+github "segmentio/analytics-ios" "4.0.4"
