@@ -1,3 +1,15 @@
+## 3.3.0
+#### Changed
+- Updated to [Braze iOS SDK 3.26.1](https://github.com/Appboy/appboy-ios-sdk/releases/tag/3.26.1).
+- Deprecates the compilation macro `ABK_ENABLE_IDFA_COLLECTION` in favor of the `ABKIDFADelegate` implementation.
+  - `ABK_ENABLE_IDFA_COLLECTION` will be removed in a future release and will stop functioning properly in iOS 14. To continue collecting IDFA on iOS 14 devices, you must upgrade to Xcode 12 and implement `App Tracking Transparency` and Braze's `ABKIDFADelegate` (see the [iOS 14 upgrade guide](https://www.braze.com/docs/developer_guide/platform_integration_guides/ios/ios_14/#idfa-and-app-tracking-transparency) for more information).
+  - `ABKIDFADelegate` can be passed in through setting [`appboyOptions`](https://github.com/Appboy/appboy-segment-ios/blob/master/CHANGELOG.md#added-1) on the `SEGAppboyIntegrationFactory`.
+
+#### Added
+- Added Binary Project Specification file for more efficient Carthage integration. 
+  - Update your Cartfile to use `binary "https://raw.githubusercontent.com/Appboy/appboy-segment-ios/master/Segment_Appboy.json"` instead of `github "appboy/appboy-segment-ios"`
+  - Support for this integration method was added starting with version 3.2.0 of the SDK.
+
 ## 3.2.0
 
 #### Added
