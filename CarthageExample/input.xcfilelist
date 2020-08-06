@@ -1,0 +1,4 @@
+$(SRCROOT)/Carthage/Build/iOS/Segment_Appboy.framework
+$(SRCROOT)/Carthage/Build/iOS/Analytics.framework
+$(SRCROOT)/Carthage/Build/iOS/Appboy_iOS_SDK.framework
+$(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework

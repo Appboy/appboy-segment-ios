@@ -8,6 +8,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"xNAmGpyITen4FEZg9C2ES6r2iYm8Ommk"];
   [config use:[SEGAppboyIntegrationFactory instance]];
+  
+  // Example of setting appboyOptions
+  [SEGAppboyIntegrationFactory instance].appboyOptions = @{ABKMinimumTriggerTimeIntervalKey: @1};
+  
   [[SEGAppboyIntegrationFactory instance] saveLaunchOptions:launchOptions];
   [SEGAnalytics setupWithConfiguration:config];
   [SEGAnalytics debug:YES];

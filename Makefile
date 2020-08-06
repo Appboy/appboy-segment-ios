@@ -3,10 +3,10 @@ XCPRETTY := xcpretty -c && exit ${PIPESTATUS[0]}
 SDK ?= "iphonesimulator"
 DESTINATION ?= "platform=iOS Simulator,name=iPhone 5"
 PROJECT := Segment-Appboy
-XC_ARGS := -scheme $(PROJECT)-Example -workspace Example/$(PROJECT).xcworkspace -sdk $(SDK) -destination $(DESTINATION) ONLY_ACTIVE_ARCH=NO
+XC_ARGS := -scheme $(PROJECT)-Example -workspace CocoapodsExample/$(PROJECT).xcworkspace -sdk $(SDK) -destination $(DESTINATION) ONLY_ACTIVE_ARCH=NO
 
-install: Example/Podfile Segment-Appboy.podspec
-	pod install --project-directory=Example
+install: CocoapodsExample/Podfile Segment-Appboy.podspec
+	pod install --project-directory=CocoapodsExample
 
 clean:
 	xcodebuild $(XC_ARGS) clean | $(XCPRETTY)

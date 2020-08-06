@@ -1,3 +1,51 @@
+## 3.3.0
+#### Changed
+- Updated to [Braze iOS SDK 3.26.1](https://github.com/Appboy/appboy-ios-sdk/releases/tag/3.26.1).
+- Deprecates the compilation macro `ABK_ENABLE_IDFA_COLLECTION` in favor of the `ABKIDFADelegate` implementation.
+  - `ABK_ENABLE_IDFA_COLLECTION` will be removed in a future release and will stop functioning properly in iOS 14. To continue collecting IDFA on iOS 14 devices, you must upgrade to Xcode 12 and implement `App Tracking Transparency` and Braze's `ABKIDFADelegate` (see the [iOS 14 upgrade guide](https://www.braze.com/docs/developer_guide/platform_integration_guides/ios/ios_14/#idfa-and-app-tracking-transparency) for more information).
+  - `ABKIDFADelegate` can be passed in through setting [`appboyOptions`](https://github.com/Appboy/appboy-segment-ios/blob/master/CHANGELOG.md#added-1) on the `SEGAppboyIntegrationFactory`.
+
+#### Added
+- Added Binary Project Specification file for more efficient Carthage integration. 
+  - Update your Cartfile to use `binary "https://raw.githubusercontent.com/Appboy/appboy-segment-ios/master/Segment_Appboy.json"` instead of `github "appboy/appboy-segment-ios"`
+  - Support for this integration method was added starting with version 3.2.0 of the SDK.
+
+## 3.2.0
+
+#### Added
+- Added Carthage support
+
+To install the Braze integration through Carthage, add the following lines to your `Cartfile`:
+```
+github "segmentio/analytics-ios"
+github "appboy/appboy-segment-ios"
+github "appboy/appboy-ios-sdk"
+```
+
+And run: 
+```sh
+carthage update
+```
+
+Follow the standard procedure to add the frameworks built/retrieved by Carthage to your project (see [Adding frameworks to an application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application))
+
+#### Changed
+- Updated to [Braze iOS SDK 3.24.1](https://github.com/Appboy/appboy-ios-sdk/releases/tag/3.24.1).
+
+## 3.1.0
+
+#### Added
+- Added ability to set `appboyOptions` on the `SEGAppboyIntegrationFactory` for example:
+```
+[SEGAppboyIntegrationFactory instance].appboyOptions = @{ABKMinimumTriggerTimeIntervalKey: @1}; 
+```
+The full list of options are documented in [Appboy.h](https://github.com/Appboy/appboy-ios-sdk/blob/master/AppboyKit/headers/AppboyKitLibrary/Appboy.h#L35). Shout out to @maloneranger for the feature suggestion and PR. 
+- Added the ability to import one of our UI subspecs instead of the full SDK. To do this, update your `Podfile` to use `Segment-Appboy/InAppMessage`, `Segment-Appboy/NewsFeed`, or `Segment-Appboy/ContentCards` instead of `Segment-Appboy`. `Segment-Appboy` will continue to use the full SDK by default. Thanks @khaptonstall!
+
+#### Changed
+- Updated to [Braze iOS SDK 3.22.0](https://github.com/Appboy/appboy-ios-sdk/releases/tag/3.22.0).
+- Updated code to call all Braze iOS SDK push handling methods that call UI APIs from the main thread. Thanks @gilserrap and @khaptonstall!
+
 ## 3.0.0
 
 ##### Breaking

@@ -6,6 +6,8 @@
 @property IBOutlet UITextField *customEventTextField;
 @property IBOutlet UITextField *propertyKeyTextField;
 @property IBOutlet UITextField *propertyValueTextField;
+@property (weak, nonatomic) IBOutlet UILabel *unreadContentCardsLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *modalOrNavigationControl;
 
 - (IBAction)identifyButtonPress:(id)sender;
 - (IBAction)flushButtonPress:(id)sender;

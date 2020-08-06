@@ -232,7 +232,7 @@ describe(@"SEGAppboyIntegration", ^{
       [options setUserIdMapper:^NSString * _Nonnull(NSString * _Nonnull segmentUserId) {
         return [segmentUserId stringByAppendingString:@" Smith"];
       }];
-      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings integrationOptions:options];
+      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings appboyOptions:nil integrationOptions:options];
 
       SEGIdentifyPayload *identifyPayload = [[SEGIdentifyPayload alloc] initWithUserId:@"John"
                                                                            anonymousId:nil
@@ -250,7 +250,7 @@ describe(@"SEGAppboyIntegration", ^{
 
       SEGAppboyIntegrationOptions *options = [[SEGAppboyIntegrationOptions alloc] init];
       options.enableTraitDiffing = YES;
-      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings integrationOptions:options];
+      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings appboyOptions:nil integrationOptions:options];
 
       NSDictionary *firstTraits = @{
         @"trait1" : @"value1",
@@ -302,7 +302,7 @@ describe(@"SEGAppboyIntegration", ^{
 
       SEGAppboyIntegrationOptions *options = [[SEGAppboyIntegrationOptions alloc] init];
       options.enableTraitDiffing = YES;
-      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings integrationOptions:options];
+      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings appboyOptions:nil integrationOptions:options];
 
       NSDictionary *traits = @{
         @"trait1" : @"value1",
