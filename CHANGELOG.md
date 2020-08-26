@@ -1,4 +1,13 @@
+## 3.4.0-beta1
+
+- This release can be used to beta test iOS 14.
+
+#### Breaking
+- Updated to [Braze iOS SDK 3.27.0-beta2](https://github.com/Appboy/appboy-ios-sdk/releases/tag/3.27.0-beta2).
+  - Integrators will now be required to exclude the `arm64` simulator slice in their entire project. Please see the [Appboy-iOS-SDK Changelog](https://github.com/Appboy/appboy-ios-sdk/blob/ios14-beta/CHANGELOG.md#changed) for more information.
+
 ## 3.3.0
+
 #### Changed
 - Updated to [Braze iOS SDK 3.26.1](https://github.com/Appboy/appboy-ios-sdk/releases/tag/3.26.1).
 - Deprecates the compilation macro `ABK_ENABLE_IDFA_COLLECTION` in favor of the `ABKIDFADelegate` implementation.
