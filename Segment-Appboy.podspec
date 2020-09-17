@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-Appboy"
-  s.version          = "3.3.0"
+  s.version          = "3.4.0"
   s.summary          = "Braze Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
@@ -22,27 +22,27 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Full-SDK'
 
   s.subspec 'Full-SDK' do |default|
-    default.dependency 'Appboy-iOS-SDK', '~>3.26.1'
+    default.dependency 'Appboy-iOS-SDK', '~>3.27.0'
     default.source_files = 'Pod/Classes/**/*'
   end
 
   s.subspec 'Core' do |core|
-    core.dependency 'Appboy-iOS-SDK/Core', '~>3.26.1'
+    core.dependency 'Appboy-iOS-SDK/Core', '~>3.27.0'
     core.source_files = 'Pod/Classes/**/*'
   end
   
   s.subspec 'InAppMessage' do |iam|
-    iam.dependency 'Appboy-iOS-SDK/InAppMessage', '~>3.26.1'
+    iam.dependency 'Appboy-iOS-SDK/InAppMessage', '~>3.27.0'
     iam.source_files = 'Pod/Classes/**/*'
   end
   
   s.subspec 'NewsFeed' do |nf|
-    nf.dependency 'Appboy-iOS-SDK/NewsFeed', '~>3.26.1'
+    nf.dependency 'Appboy-iOS-SDK/NewsFeed', '~>3.27.0'
     nf.source_files = 'Pod/Classes/**/*'
   end
   
   s.subspec 'ContentCards' do |cc|
-    cc.dependency 'Appboy-iOS-SDK/ContentCards', '~>3.26.1'
+    cc.dependency 'Appboy-iOS-SDK/ContentCards', '~>3.27.0'
     cc.source_files = 'Pod/Classes/**/*'
   end
 
