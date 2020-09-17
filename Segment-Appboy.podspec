@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-Appboy"
-  s.version          = "3.4.0"
+  s.version          = "3.4.1"
   s.summary          = "Braze Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
@@ -20,6 +20,10 @@ Pod::Spec.new do |s|
 
   s.dependency 'Analytics'
   s.default_subspec = 'Full-SDK'
+
+  # Skip this architecture to pass Pod validation since we removed the `arm64` simulator ARCH in order to use lipo later
+  s.pod_target_xcconfig = {  'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
   s.subspec 'Full-SDK' do |default|
     default.dependency 'Appboy-iOS-SDK', '~>3.27.0'

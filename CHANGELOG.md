@@ -1,3 +1,8 @@
+## 3.4.1
+
+#### Fixed
+- Fixed an issue when building to simulators in certain cases.
+
 ## 3.4.0
 
 ##### Breaking
