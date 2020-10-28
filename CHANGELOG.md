@@ -1,3 +1,9 @@
+## 3.5.0
+
+##### Breaking
+- Updated headers for compatibility with [Analytics 4.1.0](https://github.com/segmentio/analytics-ios/releases/tag/4.1.0).
+- Updated to [Braze iOS SDK 3.29.1](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#3291).
+
 ## 3.4.1
 
 #### Fixed
