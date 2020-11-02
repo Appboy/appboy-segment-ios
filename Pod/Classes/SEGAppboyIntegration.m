@@ -8,7 +8,11 @@
 #import "Appboy-iOS-SDK/ABKUser.h"
 #import "Appboy-iOS-SDK/ABKAttributionData.h"
 #endif
+#if __has_include(<Segment/SEGIntegration.h>)
+#import <Segment/SEGAnalyticsUtils.h>
+#elif __has_include(<Analytics/SEGIntegration.h>)
 #import <Analytics/SEGAnalyticsUtils.h>
+#endif
 #import "SEGAppboyIntegrationFactory.h"
 #import "SEGAppboyIntegrationOptions.h"
 #import "SEGAppboyAdditions.h"

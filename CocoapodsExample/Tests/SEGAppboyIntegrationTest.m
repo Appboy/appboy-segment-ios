@@ -1,7 +1,11 @@
 #import "SEGAppboyIntegration.h"
 #import "AppboyKit.h"
 #import <OCMock/OCMock.h>
+#if __has_include(<Segment/SEGIntegration.h>)
+#import <Segment/SEGIntegration.h>
+#elif __has_include(<Analytics/SEGIntegration.h>)
 #import <Analytics/SEGIntegration.h>
+#endif
 #import "SEGAnalyticsUtils.h"
 #import "SEGAppboyIntegrationOptions.h"
 

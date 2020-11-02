@@ -1,4 +1,21 @@
+## 3.5.0
+
+##### Breaking
+- Updated headers for compatibility with [Analytics 4.1.0](https://github.com/segmentio/analytics-ios/releases/tag/4.1.0).
+- Updated to [Braze iOS SDK 3.29.1](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#3291).
+
+## 3.4.1
+
+#### Fixed
+- Fixed an issue when building to simulators in certain cases.
+
+## 3.4.0
+
+##### Breaking
+- Updated to [Braze iOS SDK 3.27.0](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#3270). This release adds support for iOS 14 and requires XCode 12. Please read the Braze iOS SDK changelog for details.
+
 ## 3.3.0
+
 #### Changed
 - Updated to [Braze iOS SDK 3.26.1](https://github.com/Appboy/appboy-ios-sdk/releases/tag/3.26.1).
 - Deprecates the compilation macro `ABK_ENABLE_IDFA_COLLECTION` in favor of the `ABKIDFADelegate` implementation.

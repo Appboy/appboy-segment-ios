@@ -1,5 +1,9 @@
- #import <Foundation/Foundation.h>
+#import <Foundation/Foundation.h>
+#if __has_include(<Segment/SEGIntegration.h>)
+#import <Segment/SEGIntegration.h>
+#elif __has_include(<Analytics/SEGIntegration.h>)
 #import <Analytics/SEGIntegration.h>
+#endif
 
 @class SEGAppboyIntegrationOptions;
 
