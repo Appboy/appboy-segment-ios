@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "Adevinta-Segment-Appboy"
   s.version          = "3.6.0"
-  s.summary          = "Braze Integration for Segment's analytics-ios library."
+  s.summary          = "AdevintaSpain's fork for Braze Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
                        Analytics for iOS provides a single API that lets you
@@ -10,10 +10,10 @@ Pod::Spec.new do |s|
                        This is the Braze integration for the iOS library.
                        DESC
 
-  s.homepage         = "https://github.com/appboy/appboy-segment-ios"
+  s.homepage         = "https://github.com/AdevintaSpain/appboy-segment-ios"
   s.license          =  { :type => 'MIT' }
   s.author           = { "Appboy" => "hello@braze.com" }
-  s.source           = { :git => "https://github.com/appboy/appboy-segment-ios.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/AdevintaSpain/appboy-segment-ios.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '11.0'
   s.requires_arc = true
