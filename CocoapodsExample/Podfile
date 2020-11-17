@@ -8,13 +8,13 @@ use_frameworks!
 
 target 'Segment-Appboy_Example' do
   platform :ios, '11.0'
-  pod "Segment-Appboy", :path => "../"
+  pod "Adevinta-Segment-Appboy", :path => "../"
   pod 'Analytics'
 end
 
 target 'Segment-Appboy_Tests' do
   platform :ios, '11.0'
-  pod "Segment-Appboy", :path => "../"
+  pod "Adevinta-Segment-Appboy", :path => "../"
   pod 'Analytics'
   pod 'Specta'
   pod 'Expecta'
