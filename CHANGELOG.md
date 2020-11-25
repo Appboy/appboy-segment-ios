@@ -1,3 +1,28 @@
+## 3.6.0
+
+#### Breaking
+- Updated to [Braze iOS SDK 3.31.0](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#3310).
+
+#### Added
+- Adds initial support for Swift Package Manager.
+  - Two new packages were added:
+    - `Full-SDK`, which contains the full SDK (including UI elements) and corresponds to the `Full-SDK` pod.
+    - `Core`, which contains the core Braze functionality and corresponds to the `Core` pod.
+  - Note that tvOS support is not available via Swift Package Manager for this release. 
+  - To add the package to your project follow these steps:
+    - Select `File > Swift Packages > Add Package Dependency`.
+      - In the search bar, enter https://github.com/Appboy/segment-ios.
+        - Select `Full-SDK` or `Core`, depending on your use case.
+      - In your app's target, under `Build Settings > Other Linker Flags`, add the `-ObjC` linker flag.
+      - In the Xcode menu, click `Product > Scheme > Edit Scheme...`
+      - Click the expand ▶️ next to `Build` and select `Post-actions`. Press `+` and select `New Run Script Action`.
+      - In the dropdown next to `Provide build settings from`, select your app's target.
+      - Copy this script into the open field:
+        ```
+        bash "$BUILT_PRODUCTS_DIR/Appboy_iOS_SDK_AppboyKit.bundle/Appboy.bundle/appboy-spm-cleanup.sh"
+        ```
+    - Note that when importing the `Full-SDK`, you need to use an underscore (`import Full_SDK`).
+
 ## 3.5.0
 
 ##### Breaking
