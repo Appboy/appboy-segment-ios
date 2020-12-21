@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-Appboy"
-  s.version          = "3.6.0"
+  s.version          = "3.6.1"
   s.summary          = "Braze Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC

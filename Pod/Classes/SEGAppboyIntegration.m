@@ -3,6 +3,10 @@
 #import <Appboy_iOS_SDK/AppboyKit.h>
 #import <Appboy_iOS_SDK/ABKUser.h>
 #import <Appboy_iOS_SDK/ABKAttributionData.h>
+#elif SWIFT_PACKAGE
+#import "AppboyKit.h"
+#import "ABKUser.h"
+#import "ABKAttributionData.h"
 #else
 #import "Appboy-iOS-SDK/AppboyKit.h"
 #import "Appboy-iOS-SDK/ABKUser.h"

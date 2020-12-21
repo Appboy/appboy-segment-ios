@@ -1,6 +1,8 @@
 #import "SEGAppboyIntegrationFactory.h"
 #if defined(__has_include) && __has_include(<Appboy_iOS_SDK/AppboyKit.h>)
 #import <Appboy_iOS_SDK/AppboyKit.h>
+#elif SWIFT_PACKAGE
+#import "AppboyKit.h"
 #else
 #import "Appboy-iOS-SDK/AppboyKit.h"
 #endif

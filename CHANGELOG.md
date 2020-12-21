@@ -1,3 +1,8 @@
+## 3.6.1
+
+#### Fixed
+- Fixes an issue with Swift Package Manager which caused errors at compile time.
+
 ## 3.6.0
 
 #### Breaking
