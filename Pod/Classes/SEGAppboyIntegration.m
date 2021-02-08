@@ -3,14 +3,18 @@
 #import <Appboy_iOS_SDK/AppboyKit.h>
 #import <Appboy_iOS_SDK/ABKUser.h>
 #import <Appboy_iOS_SDK/ABKAttributionData.h>
+#elif SWIFT_PACKAGE
+#import "AppboyKit.h"
+#import "ABKUser.h"
+#import "ABKAttributionData.h"
 #else
 #import "Appboy-iOS-SDK/AppboyKit.h"
 #import "Appboy-iOS-SDK/ABKUser.h"
 #import "Appboy-iOS-SDK/ABKAttributionData.h"
 #endif
-#if __has_include(<Segment/SEGIntegration.h>)
+#if __has_include(<Segment/SEGAnalyticsUtils.h>)
 #import <Segment/SEGAnalyticsUtils.h>
-#elif __has_include(<Analytics/SEGIntegration.h>)
+#elif __has_include(<Analytics/SEGAnalyticsUtils.h>)
 #import <Analytics/SEGAnalyticsUtils.h>
 #endif
 #import "SEGAppboyIntegrationFactory.h"
