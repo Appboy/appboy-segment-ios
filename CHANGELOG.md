@@ -1,3 +1,8 @@
+## 4.0.0
+
+#### Breaking
+- Updated to [Braze iOS SDK 4.0.1](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#401).
+
 ## 3.6.1
 
 #### Fixed

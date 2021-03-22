@@ -13,7 +13,7 @@ let package = Package(
   ],
   dependencies: [
     .package(name: "Segment", url: "https://github.com/segmentio/analytics-ios.git", from: "4.1.1"),
-    .package(name: "Appboy_iOS_SDK", url: "https://github.com/Appboy/appboy-ios-sdk.git", from: "3.31.0"),
+    .package(name: "Appboy_iOS_SDK", url: "https://github.com/Appboy/appboy-ios-sdk.git", from: "4.0.1"),
   ],
   targets: [
     .target(

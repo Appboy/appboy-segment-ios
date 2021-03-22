@@ -14,6 +14,7 @@
 {
   [super viewDidLoad];
   [self contentCardsUpdated:nil];
+  [self userIDTextField].text = [[NSUserDefaults standardUserDefaults] stringForKey:@"userID"];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(contentCardsUpdated:)
                                                name:ABKContentCardsProcessedNotification
@@ -35,7 +36,11 @@
   NSString *userID = @"appboySegmentTestUseriOS";
   if (self.userIDTextField.text.length > 0) {
     userID = self.userIDTextField.text;
+  } else {
+      [self userIDTextField].text = userID;
   }
+  [[NSUserDefaults standardUserDefaults] setObject:userID forKey:@"userID"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
   [[SEGAnalytics sharedAnalytics] identify:userID
                                     traits:@{ @"email": @"hello@appboy.com",
                                               @"bool" : @(YES),
