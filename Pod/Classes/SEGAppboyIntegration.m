@@ -7,6 +7,10 @@
 #import "AppboyKit.h"
 #import "ABKUser.h"
 #import "ABKAttributionData.h"
+#elif defined(__has_include) && __has_include(<AppboyTVOSKit/AppboyKit.h>)
+#import <AppboyTVOSKit/AppboyKit.h>
+#import <AppboyTVOSKit/ABKUser.h>
+#import <AppboyTVOSKit/ABKAttributionData.h>
 #else
 #import "Appboy-iOS-SDK/AppboyKit.h"
 #import "Appboy-iOS-SDK/ABKUser.h"
@@ -267,6 +271,7 @@
   SEGLog(@"[[Appboy sharedInstance] flushDataAndProcessRequestQueue]");
 }
 
+#if !TARGET_OS_TV
 // Invoked when the device is registered with a push token.
 // Appboy uses this to send push messages to the device, so forward it to Appboy.
 - (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -301,6 +306,7 @@
   }
   SEGLog(@"[[Appboy sharedInstance] getActionWithIdentifier: forRemoteNotification: completionHandler:]");
 }
+#endif
 
 - (BOOL)logPushIfComesInBeforeAppboyInitializedWithIdentifier:(NSString *)identifier {
   NSDictionary *pushDictionary = [[SEGAppboyIntegrationFactory instance] getPushPayload];

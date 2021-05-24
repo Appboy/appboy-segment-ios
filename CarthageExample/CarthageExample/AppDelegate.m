@@ -10,7 +10,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
-  SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"xNAmGpyITen4FEZg9C2ES6r2iYm8Ommk"];
+  SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR-WRITE-KEY-HERE"];
   [config use:[SEGAppboyIntegrationFactory instance]];
   
   [[SEGAppboyIntegrationFactory instance] saveLaunchOptions:launchOptions];

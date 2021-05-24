@@ -1,0 +1,10 @@
+install! 'cocoapods',
+         :share_schemes_for_development_pods => true
+
+source 'https://cdn.cocoapods.org/'
+
+target 'Segment-Appboy_Example' do
+  platform :tvos, '11.0'
+  pod "Segment-Appboy/tvOS", :path => "../"
+  pod 'Analytics'
+end

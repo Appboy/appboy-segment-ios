@@ -4,23 +4,30 @@
 #import <Appboy_iOS_SDK/AppboyKit.h>
 #elif SWIFT_PACKAGE
 #import "AppboyKit.h"
+#elif defined(__has_include) && __has_include(<AppboyTVOSKit/AppboyKit.h>)
+#import <AppboyTVOSKit/AppboyKit.h>
 #else
 #import "Appboy-iOS-SDK/AppboyKit.h"
 #endif
 
 @interface SEGAppboyHelper ()
 
+#if !TARGET_OS_TV
 @property UNUserNotificationCenter *center NS_AVAILABLE_IOS(10_0);
 @property UNNotificationResponse *response NS_AVAILABLE_IOS(10_0);
+#endif
 
 @end
 
 @implementation SEGAppboyHelper
 
 - (void)applicationDidFinishLaunching NS_AVAILABLE_IOS(10_0) {
+#if !TARGET_OS_TV
   [self logUNPushIfComesInBeforeAppboyInitialized];
+#endif
 }
 
+#if !TARGET_OS_TV
 - (void)saveUserNotificationCenter:(UNUserNotificationCenter *)center
               notificationResponse:(UNNotificationResponse *)response {
   self.center = center;
@@ -52,5 +59,6 @@
   }
   return NO;
 }
+#endif
 
 @end

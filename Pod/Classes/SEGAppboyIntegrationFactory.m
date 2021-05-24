@@ -3,6 +3,8 @@
 #import <Appboy_iOS_SDK/AppboyKit.h>
 #elif SWIFT_PACKAGE
 #import "AppboyKit.h"
+#elif defined(__has_include) && __has_include(<AppboyTVOSKit/AppboyKit.h>)
+#import <AppboyTVOSKit/AppboyKit.h>
 #else
 #import "Appboy-iOS-SDK/AppboyKit.h"
 #endif
@@ -41,10 +43,12 @@
 }
 
 - (void)saveLaunchOptions:(NSDictionary *)launchOptions {
+#if !TARGET_OS_TV
   NSDictionary *pushPayLoad = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
   if (pushPayLoad != nil && pushPayLoad.count > 0) {
     self.savedPushPayload = [pushPayLoad copy];
   }
+#endif
 }
 
 - (void)saveRemoteNotification:(NSDictionary *)userInfo {
