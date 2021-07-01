@@ -1,3 +1,36 @@
+## 4.2.0
+
+**Note:** This version does not include Carthage support. We are revisiting our Carthage approach and will reintroduce it in an upcoming version.
+
+#### Breaking
+- Updated to [Braze iOS SDK 4.3.0](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#430).
+
+## 4.1.0
+
+**Note:** This version does not include Carthage support. We are revisiting our Carthage approach and will reintroduce it in an upcoming version.
+
+#### Breaking
+- Updated to [Braze iOS SDK 4.1.0](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#410).
+
+#### Added
+- Adds support for tvOS when using CocoaPods. For tvOS, add the following lines to your Podfile target:
+```
+  pod 'Segment-Appboy/tvOS'
+  pod 'Analytics'
+```
+And add the functionality to your `AppDelegate.m`:
+```
+  SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"<segment key here>"];
+  [config use:[SEGAppboyIntegrationFactory instance]];
+  [[SEGAppboyIntegrationFactory instance] saveLaunchOptions:launchOptions];
+  [SEGAnalytics setupWithConfiguration:config];
+```
+
+## 4.0.0
+
+#### Breaking
+- Updated to [Braze iOS SDK 4.0.1](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#401).
+
 ## 3.6.1
 
 #### Fixed
