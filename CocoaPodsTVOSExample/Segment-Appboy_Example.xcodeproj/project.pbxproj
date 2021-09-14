@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		061BC0680D461E3B23952D78 /* Pods_Segment_Appboy_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59FBC548877E32C15D404499 /* Pods_Segment_Appboy_Example.framework */; };
+		35C142FB277051674658B309 /* libPods-Segment-Appboy_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA62634F643AF5267499188 /* libPods-Segment-Appboy_Example.a */; };
 		5D23953225D6CFA600DA929D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D23953125D6CFA600DA929D /* AppDelegate.m */; };
 		5D23953525D6CFA600DA929D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D23953425D6CFA600DA929D /* ViewController.m */; };
 		5D23953825D6CFA600DA929D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D23953625D6CFA600DA929D /* Main.storyboard */; };
@@ -17,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		59FBC548877E32C15D404499 /* Pods_Segment_Appboy_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Segment_Appboy_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D23952D25D6CFA600DA929D /* Segment-Appboy_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Segment-Appboy_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D23953025D6CFA600DA929D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5D23953125D6CFA600DA929D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -30,6 +29,7 @@
 		5D23953F25D6CFAB00DA929D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A4DD16D62D97ED29D6077DE5 /* Pods-Segment-Appboy_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-Appboy_Example.release.xcconfig"; path = "Target Support Files/Pods-Segment-Appboy_Example/Pods-Segment-Appboy_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E1B569F23E59A56EE361E93D /* Pods-Segment-Appboy_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Segment-Appboy_Example.debug.xcconfig"; path = "Target Support Files/Pods-Segment-Appboy_Example/Pods-Segment-Appboy_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		EAA62634F643AF5267499188 /* libPods-Segment-Appboy_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Segment-Appboy_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				061BC0680D461E3B23952D78 /* Pods_Segment_Appboy_Example.framework in Frameworks */,
+				35C142FB277051674658B309 /* libPods-Segment-Appboy_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,7 +81,7 @@
 		A0F9256B8A1EE9C85F010D22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				59FBC548877E32C15D404499 /* Pods_Segment_Appboy_Example.framework */,
+				EAA62634F643AF5267499188 /* libPods-Segment-Appboy_Example.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

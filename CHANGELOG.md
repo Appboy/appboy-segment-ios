@@ -1,9 +1,17 @@
+## 4.3.0
+
+**Note:** This version does not include Carthage support. We are revisiting our Carthage approach and will reintroduce it in an upcoming version.
+
+#### Breaking
+- Updated to [Braze tvOS SDK 4.3.x](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#430).
+- A `track` call with event name `Completed Order` will now be treated as a purchase event for backwards compatibility with Segment eCommerce v1 API.
+
 ## 4.2.0
 
 **Note:** This version does not include Carthage support. We are revisiting our Carthage approach and will reintroduce it in an upcoming version.
 
 #### Breaking
-- Updated to [Braze iOS SDK 4.3.0](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#430).
+- Updated to [Braze iOS SDK 4.3.x](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#430).
 
 ## 4.1.0
 

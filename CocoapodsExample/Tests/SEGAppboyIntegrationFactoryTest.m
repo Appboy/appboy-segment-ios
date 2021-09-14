@@ -2,7 +2,7 @@
 #import "SEGAppboyIntegration.h"
 #import "AppboyKit.h"
 #import <OCMock/OCMock.h>
-#import <Analytics/SEGIntegration.h>
+#import <Segment/SEGIntegration.h>
 #import "SEGAnalyticsUtils.h"
 
 SpecBegin(SEGAppboyIntegrationFactory)

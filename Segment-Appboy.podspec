@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Segment-Appboy"
-  s.version          = "4.2.0"
+  s.version          = "4.3.0"
   s.summary          = "Braze Integration for Segment's analytics-ios library."
 
   s.description      = <<-DESC
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'tvOS' do |tv|
     tv.platform = :tvos, '11.0'
-    tv.dependency 'Appboy-tvOS-SDK', '~>3.27.0'
+    tv.dependency 'Appboy-tvOS-SDK', '~>4.3.0'
     tv.source_files = 'Pod/Classes/**/*'
   end
 

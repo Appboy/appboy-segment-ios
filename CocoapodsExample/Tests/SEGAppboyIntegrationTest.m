@@ -1,7 +1,7 @@
 #import "SEGAppboyIntegration.h"
 #import "AppboyKit.h"
 #import <OCMock/OCMock.h>
-#import <Analytics/SEGIntegration.h>
+#import <Segment/SEGIntegration.h>
 #import "SEGAnalyticsUtils.h"
 
 SpecBegin(InitialSpecs)
@@ -123,6 +123,30 @@ describe(@"SEGAppboyIntegration", ^{
       [appboyIntegration track:trackPayload];
       OCMVerifyAllWithDelay(appboyMock, 2);
     });
+    
+    it(@"calls purchase for Completed Order", ^{
+      NSDictionary *settings = @{@"apiKey":@"foo"};
+      id appboyMock = OCMClassMock([Appboy class]);
+      OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
+      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil withAppboyOptions:[OCMArg any]]);
+      OCMExpect([appboyMock logPurchase:@"Completed Order" inCurrency:@"USD" atPrice:[NSDecimalNumber decimalNumberWithString:@"55.5"]
+                           withQuantity:1 andProperties:@{@"extraProperty" : @"extraValue"}]);
+      
+      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
+      
+      NSDictionary *properties = @{
+                                   @"revenue" : @"55.5",
+                                   @"currency" : @"USD",
+                                   @"extraProperty" : @"extraValue"
+                                   };
+      
+      SEGTrackPayload *trackPayload = [[SEGTrackPayload alloc] initWithEvent:@"Completed Order"
+                                                                  properties:properties
+                                                                     context:nil
+                                                                integrations:nil];
+      [appboyIntegration track:trackPayload];
+      OCMVerifyAllWithDelay(appboyMock, 2);
+    });
   
     it(@"calls logPurchase for each product in the products array", ^{
       NSDictionary *settings = @{@"apiKey":@"foo"};
@@ -178,12 +202,12 @@ describe(@"SEGAppboyIntegration", ^{
   });
   
   describe(@"flush", ^{
-    it(@"calls [[Appboy sharedInstance] flushDataAndProcessRequestQueue]", ^{
+    it(@"calls [[Appboy sharedInstance] requestImmediateDataFlush]", ^{
       NSDictionary *settings = @{@"apiKey":@"foo"};
       id appboyMock = OCMClassMock([Appboy class]);
       OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
       OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil withAppboyOptions:[OCMArg any]]);
-      OCMExpect([appboyMock flushDataAndProcessRequestQueue]);
+      OCMExpect([appboyMock requestImmediateDataFlush]);
       SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
       [appboyIntegration flush];
       OCMVerifyAllWithDelay(appboyMock, 2);

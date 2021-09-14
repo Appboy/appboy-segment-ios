@@ -1,7 +1,7 @@
 PODS:
   - Analytics (4.1.3)
   - Appboy-tvOS-SDK (3.27.0)
-  - Segment-Appboy/tvOS (3.6.1):
+  - Segment-Appboy/tvOS (4.2.0):
     - Analytics
     - Appboy-tvOS-SDK (~> 3.27.0)
 
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Analytics: 4c01e3e19d4be86705bad6581a1c2aa5a15a9d22
   Appboy-tvOS-SDK: 22993e5e47387695fe1ecec5177c16a55d427b12
-  Segment-Appboy: 5497f90416c09cfd603de1047c155e26a6cf4adb
+  Segment-Appboy: 5688916eb8fb104b638116ba251cee5d4d8bd266
 
 PODFILE CHECKSUM: 230825da8fa8732fc38070eef05987c5967046f4
 
