@@ -8,8 +8,8 @@ let package = Package(
     .iOS(.v12)
   ],
   products: [
-    .library(name: "Full-SDK", targets: ["Full-SDK"]),
-    .library(name: "Core", targets: ["Core"])
+    .library(name: "AppboySegment", targets: ["AppboySegment"]),
+    .library(name: "AppboySegmentCore", targets: ["AppboySegmentCore"])
   ],
   dependencies: [
     .package(name: "Segment", url: "https://github.com/segmentio/analytics-ios.git", from: "4.1.1"),
@@ -17,7 +17,7 @@ let package = Package(
   ],
   targets: [
     .target(
-      name: "Full-SDK",
+      name: "AppboySegment",
       dependencies: [
           .product(name: "Segment", package: "Segment"),
           .product(name: "AppboyUI", package: "Appboy_iOS_SDK"),
@@ -28,7 +28,7 @@ let package = Package(
       ]
     ),
     .target(
-      name: "Core",
+      name: "AppboySegmentCore",
       dependencies: [
           .product(name: "Segment", package: "Segment"),
           .product(name: "AppboyKit", package: "Appboy_iOS_SDK"),

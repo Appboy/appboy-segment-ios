@@ -1,3 +1,11 @@
+## 4.4.0
+
+**Note:** This version does not include Carthage support. We are revisiting our Carthage approach and will reintroduce it in an upcoming version.
+
+#### Breaking
+- Renames SPM packages to `AppboySegment` and `AppboySegmentCore` from `Full-SDK` and `Core`.
+  - In order to migrate, update the package and change import statements to `import AppboySegment` or `import AppboySegmentCore`.
+
 ## 4.3.0
 
 **Note:** This version does not include Carthage support. We are revisiting our Carthage approach and will reintroduce it in an upcoming version.
