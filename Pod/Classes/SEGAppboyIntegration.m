@@ -79,6 +79,9 @@
         SEGLog(@"[Appboy startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:]");
       });
     }
+#if !TARGET_OS_TV
+    [[Appboy sharedInstance] addSdkMetadata:@[ABKSdkMetadataSegment]];
+#endif
   }
   
   if ([Appboy sharedInstance] != nil) {

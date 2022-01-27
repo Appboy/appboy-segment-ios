@@ -12,20 +12,11 @@
       },
       {
         "package": "Appboy_iOS_SDK",
-        "repositoryURL": "https://github.com/Appboy/appboy-ios-sdk.git",
+        "repositoryURL": "https://github.com/braze-inc/braze-ios-sdk.git",
         "state": {
           "branch": null,
-          "revision": "4fe37c10288b10340a9862597d5bce7074980ae0",
-          "version": "4.3.4"
-        }
-      },
-      {
-        "package": "Segment-Appboy",
-        "repositoryURL": "https://github.com/chshapiro/appboy-segment-ios",
-        "state": {
-          "branch": "packageRenameSpm",
-          "revision": "df5f39c15dc85ec650739cf9ffaac3ba1d93a638",
-          "version": null
+          "revision": "cb6470044aee9ac2a942a3edb2ea73b7f61f1aae",
+          "version": "4.4.1"
         }
       },
       {
@@ -33,8 +24,8 @@
         "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
         "state": {
           "branch": null,
-          "revision": "d6367439527663d2038ca445a3c3c4e4bac40d60",
-          "version": "5.12.0"
+          "revision": "0fff0d7505b5306348263ea64fcc561253bbeb21",
+          "version": "5.12.2"
         }
       }
     ]

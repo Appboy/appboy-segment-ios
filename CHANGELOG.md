@@ -1,3 +1,10 @@
+## 4.5.0
+
+**Note:** This version does not include Carthage support. We are revisiting our Carthage approach and will reintroduce it in an upcoming version.
+
+#### Breaking
+- Updated to [Braze iOS SDK 4.4.1+](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#441).
+
 ## 4.4.0
 
 **Note:** This version does not include Carthage support. We are revisiting our Carthage approach and will reintroduce it in an upcoming version.
@@ -65,7 +72,7 @@ And add the functionality to your `AppDelegate.m`:
   - Note that tvOS support is not available via Swift Package Manager for this release. 
   - To add the package to your project follow these steps:
     - Select `File > Swift Packages > Add Package Dependency`.
-      - In the search bar, enter https://github.com/Appboy/segment-ios.
+      - In the search bar, enter https://github.com/Appboy/appboy-segment-ios.
         - Select `Full-SDK` or `Core`, depending on your use case.
       - In your app's target, under `Build Settings > Other Linker Flags`, add the `-ObjC` linker flag.
       - In the Xcode menu, click `Product > Scheme > Edit Scheme...`
