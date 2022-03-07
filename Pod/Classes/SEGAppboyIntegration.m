@@ -249,7 +249,12 @@
     }
     SEGLog(@"[[Appboy sharedInstance] logPurchase: inCurrency: atPrice: withQuantity:]");
   } else {
-    [[Appboy sharedInstance] logCustomEvent:payload.event withProperties:payload.properties];
+    if (payload.properties.count == 0) {
+        [[Appboy sharedInstance] logCustomEvent:payload.event];
+    } else {
+        [[Appboy sharedInstance] logCustomEvent:payload.event withProperties:payload.properties];
+    }
+
     SEGLog(@"[[Appboy sharedInstance] logCustomEvent: withProperties:]");
   }
 }

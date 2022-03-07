@@ -199,6 +199,23 @@ describe(@"SEGAppboyIntegration", ^{
       [appboyIntegration track:trackPayload];
       OCMVerifyAllWithDelay(appboyMock, 2);
     });
+
+    it(@"logs an event if there isn't revenue nor properties", ^{
+      NSDictionary *settings = @{@"apiKey":@"foo"};
+      id appboyMock = OCMClassMock([Appboy class]);
+      OCMStub([appboyMock sharedInstance]).andReturn(appboyMock);
+      OCMExpect([appboyMock startWithApiKey:@"foo" inApplication:[OCMArg any] withLaunchOptions:nil withAppboyOptions:[OCMArg any]]);
+      OCMExpect([appboyMock logCustomEvent:@"testEvent"]);
+
+      SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
+
+      SEGTrackPayload *trackPayload = [[SEGTrackPayload alloc] initWithEvent:@"testEvent"
+                                                                  properties:nil
+                                                                     context:nil
+                                                                integrations:nil];
+      [appboyIntegration track:trackPayload];
+      OCMVerifyAllWithDelay(appboyMock, 2);
+    });
   });
   
   describe(@"flush", ^{
