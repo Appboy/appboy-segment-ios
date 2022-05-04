@@ -100,10 +100,14 @@
     });
     return;
   }
-  // Ensure that the userID is set and valid (i.e. a non-empty string).
-  if (payload.userId != nil && [payload.userId length] != 0) {
-    [[Appboy sharedInstance] changeUser:payload.userId];
-    SEGLog(@"[[Appboy sharedInstance] changeUser:%@]", payload.userId);
+	
+	// Ensure that the userID is set and valid (i.e. a non-empty string).
+  if ([payload.traits[@"brazeId"] isKindOfClass:[NSString class]] && ![payload.traits[@"brazeId"] isEmpty]) {
+	[[Appboy sharedInstance] changeUser:payload.traits[@"brazeId"]];
+	SEGLog(@"[[Appboy sharedInstance] changeUser:%@]", payload.traits[@"brazeId"]);
+  } else if ( payload.userId != nil && [payload.userId length] != 0) {
+	[[Appboy sharedInstance] changeUser:payload.userId];
+	SEGLog(@"[[Appboy sharedInstance] changeUser:%@]", payload.userId);
   }
   
   if ([payload.traits[@"birthday"] isKindOfClass:[NSString class]]) {
