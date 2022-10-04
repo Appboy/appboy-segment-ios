@@ -94,6 +94,11 @@ SEGAnalytics.setup(with: config)
 
 Please see [our documentation](https://segment.com/docs/integrations/appboy/#ios) for more information.
 
+## Endpoint Customization
+
+- You must set your endpoint via the `ABKEndpointKey` inside the `appboyOptions` parameter passed to `startWithApiKey:inApplication:withLaunchOptions:withAppboyOptions:`. 
+- Set the value to your custom endpoint URL’s authority (for example, `sdk.iad-01.braze.com`, not `https://sdk.iad-01.braze.com`).
+
 ## License
 
 ```

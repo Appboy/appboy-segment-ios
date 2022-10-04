@@ -4,6 +4,12 @@
 #import <Segment/SEGIntegration.h>
 #import "SEGAnalyticsUtils.h"
 
+@interface SEGAppboyIntegration (Test)
+
++ (ABKUserGenderType)parseUserGenderInput:(NSString *)gender;
+
+@end
+
 SpecBegin(InitialSpecs)
 
 describe(@"SEGAppboyIntegration", ^{
@@ -43,7 +49,7 @@ describe(@"SEGAppboyIntegration", ^{
       SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
       
       NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-      formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
+      [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
       NSString *birthdate = [formatter stringFromDate:testDate];
       
       NSDictionary *traits = @{
@@ -239,6 +245,31 @@ describe(@"SEGAppboyIntegration", ^{
       SEGAppboyIntegration *appboyIntegration = [[SEGAppboyIntegration alloc] initWithSettings:settings];
       [appboyIntegration receivedRemoteNotification:userInfo];
       OCMVerifyAllWithDelay(appboyMock, 2);
+    });
+  });
+  
+  describe(@"parseUserGenderInput", ^{
+    it(@"takes a valid string input and returns the corresponding ABKUserGenderType", ^{
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"m"], ABKUserGenderMale);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"Male"], ABKUserGenderMale);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"f"], ABKUserGenderFemale);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"femalE"], ABKUserGenderFemale);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"o"], ABKUserGenderOther);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"oTHER"], ABKUserGenderOther);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"U"], ABKUserGenderUnknown);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"unknown"], ABKUserGenderUnknown);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"N"], ABKUserGenderNotApplicable);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"NOT APPLICABLE"], ABKUserGenderNotApplicable);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"P"], ABKUserGenderPreferNotToSay);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"prefer NOT to SAY"], ABKUserGenderPreferNotToSay);
+    });
+    
+    it(@"takes an invalid string input and returns ABKUserGenderUnknown", ^{
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"blah"], ABKUserGenderUnknown);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"123"], ABKUserGenderUnknown);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@"$#+&^@!"], ABKUserGenderUnknown);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:@""], ABKUserGenderUnknown);
+      XCTAssertEqual([SEGAppboyIntegration parseUserGenderInput:nil], ABKUserGenderUnknown);
     });
   });
 });
