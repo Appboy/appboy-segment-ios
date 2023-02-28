@@ -13,7 +13,7 @@ let package = Package(
   ],
   dependencies: [
     .package(name: "Segment", url: "https://github.com/segmentio/analytics-ios.git", from: "4.1.1"),
-    .package(name: "Appboy_iOS_SDK", url: "https://github.com/braze-inc/braze-ios-sdk.git", from: "4.5.1"),
+    .package(name: "Appboy_iOS_SDK", url: "https://github.com/braze-inc/braze-ios-sdk.git", from: "4.5.4"),
   ],
   targets: [
     .target(

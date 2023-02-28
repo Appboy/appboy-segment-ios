@@ -1,4 +1,13 @@
+## 4.6.1
+
+**Note:** This version does not include Carthage support. We are revisiting our Carthage approach and will reintroduce it in an upcoming version.
+
+#### Changed
+- Updated to [Braze iOS SDK 4.5.4+](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#454).
+
 ## 4.6.0
+
+**Note:** This version does not include Carthage support. We are revisiting our Carthage approach and will reintroduce it in an upcoming version.
 
 #### Breaking
 - Updated to [Braze iOS SDK 4.5.1+](https://github.com/Appboy/appboy-ios-sdk/blob/master/CHANGELOG.md#451).
