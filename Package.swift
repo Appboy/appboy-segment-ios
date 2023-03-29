@@ -12,7 +12,7 @@ let package = Package(
     .library(name: "Core", targets: ["Core"])
   ],
   dependencies: [
-    .package(name: "Segment", url: "https://github.com/segmentio/analytics-ios.git", from: "4.1.1"),
+    .package(name: "Segment", url: "https://github.com/sch-devios/analytics-ios.git", from: "4.2.0"),
     .package(name: "Appboy_iOS_SDK", url: "https://github.com/Appboy/appboy-ios-sdk.git", from: "4.3.0"),
   ],
   targets: [

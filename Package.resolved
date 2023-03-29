@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Segment",
+        "repositoryURL": "https://github.com/sch-devios/analytics-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "ea6743ef4d72f78aa581800a447c42936ca016e8",
+          "version": "4.2.0"
+        }
+      },
+      {
+        "package": "Appboy_iOS_SDK",
+        "repositoryURL": "https://github.com/Appboy/appboy-ios-sdk.git",
+        "state": {
+          "branch": null,
+          "revision": "d6dc3fab432309e1dbb8445bd37d2714a2ce5dd5",
+          "version": "4.5.4"
+        }
+      },
+      {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
+        "state": {
+          "branch": null,
+          "revision": "fb50c1d20f24db5322b2f8f379de3618f75fe08e",
+          "version": "5.15.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
