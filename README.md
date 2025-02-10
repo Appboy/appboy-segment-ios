@@ -1,3 +1,11 @@
+### ⚠ The new [Braze Segment Swift SDK](https://github.com/braze-inc/braze-segment-swift/) is now available! ⚠
+
+The Braze Segment iOS SDK (Objective-C SDK) is no longer in active development, since it uses the deprecated [Appboy iOS SDK](https://github.com/Appboy/Appboy-ios-sdk). All the latest iOS features in new Braze releases, like Live Activities and Feature Flags, will only be supported when using the [Braze Segment Swift SDK](https://github.com/braze-inc/braze-segment-swift/), which leverages the new [Braze Swift SDK](https://github.com/braze-inc/braze-swift-sdk). Any further updates the Braze Segment iOS SDK receives will only address security or critical bugs.
+
+See [our blog post](https://www.braze.com/resources/articles/introducing-the-new-braze-swift-sdk) for more information.
+
+</br>
+
 ![Braze Logo](https://github.com/Appboy/appboy-segment-ios/blob/master/braze-logo.png)
 
 Braze iOS Segment SDK
